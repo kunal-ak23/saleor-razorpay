@@ -5,6 +5,10 @@ import packageJson from "@/package.json";
 
 import { orderCreatedWebhook } from "./webhooks/order-created";
 import { orderFilterShippingMethodsWebhook } from "./webhooks/order-filter-shipping-methods";
+import { paymentGatewayInitializeSessionWebhook } from "./webhooks/payment-gateway-initialize-session";
+import { transactionInitializeSessionWebhook } from "./webhooks/transaction-initialize-session";
+import { transactionProcessSessionWebhook } from "./webhooks/transaction-process-session";
+import { transactionRefundRequestedWebhook } from "./webhooks/transaction-refund-session";
 
 /**
  * App SDK helps with the valid Saleor App Manifest creation. Read more:
@@ -55,7 +59,7 @@ export default createManifestHandler({
     const extensions = is3_22 ? extensionsForSaleor3_22 : [];
 
     const manifest: AppManifest = {
-      name: "Saleor App Template",
+      name: "Thepla House - Razorpay - Saleor",
       tokenTargetUrl: `${apiBaseURL}/api/register`,
       appUrl: iframeBaseUrl,
       /**
@@ -68,9 +72,9 @@ export default createManifestHandler({
          *
          * This can be removed
          */
-        "MANAGE_ORDERS",
+        "HANDLE_PAYMENTS",
       ],
-      id: "saleor.app",
+      id: "razorpay.payment.gateway",
       version: packageJson.version,
       /**
        * Configure webhooks here. They will be created in Saleor during installation
@@ -83,6 +87,10 @@ export default createManifestHandler({
       webhooks: [
         orderCreatedWebhook.getWebhookManifest(apiBaseURL),
         orderFilterShippingMethodsWebhook.getWebhookManifest(apiBaseURL),
+        paymentGatewayInitializeSessionWebhook.getWebhookManifest(apiBaseURL),
+        transactionInitializeSessionWebhook.getWebhookManifest(apiBaseURL),
+        transactionProcessSessionWebhook.getWebhookManifest(apiBaseURL),
+        transactionRefundRequestedWebhook.getWebhookManifest(apiBaseURL),
       ],
       /**
        * Optionally, extend Dashboard with custom UIs
