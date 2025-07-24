@@ -29271,6 +29271,26 @@ export type OrderFilterShippingMethodsSubscriptionSubscriptionVariables = Exact<
 
 export type OrderFilterShippingMethodsSubscriptionSubscription = { readonly event?: { readonly order?: { readonly id: string } | null, readonly shippingMethods?: ReadonlyArray<{ readonly id: string, readonly name: string }> | null } | {} | null };
 
+export type PaymentGatewayInitializeSessionSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PaymentGatewayInitializeSessionSubscription = { readonly event?: { readonly issuedAt?: string | null, readonly version?: string | null, readonly data?: JSONValue | null, readonly amount?: number | null, readonly issuingPrincipal?: { readonly id: string, readonly name?: string | null } | { readonly id: string, readonly email: string } | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly sourceObject: { readonly id: string, readonly totalPrice: { readonly gross: { readonly amount: number, readonly currency: string } } } | { readonly id: string, readonly total: { readonly gross: { readonly amount: number, readonly currency: string } } } } | {} | null };
+
+export type TransactionInitializeSessionSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TransactionInitializeSessionSubscription = { readonly event?: { readonly issuedAt?: string | null, readonly version?: string | null, readonly data?: JSONValue | null, readonly merchantReference: string, readonly customerIpAddress?: string | null, readonly idempotencyKey: string, readonly issuingPrincipal?: { readonly id: string, readonly name?: string | null } | { readonly id: string, readonly email: string } | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly transaction: { readonly id: string, readonly name: string, readonly pspReference: string, readonly authorizedAmount: { readonly amount: number, readonly currency: string }, readonly chargedAmount: { readonly amount: number, readonly currency: string } }, readonly sourceObject: { readonly id: string, readonly totalPrice: { readonly gross: { readonly amount: number, readonly currency: string } } } | { readonly id: string, readonly total: { readonly gross: { readonly amount: number, readonly currency: string } } }, readonly action: { readonly amount: number, readonly currency: string, readonly actionType: TransactionFlowStrategyEnum } } | {} | null };
+
+export type TransactionProcessSessionSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TransactionProcessSessionSubscription = { readonly event?: { readonly issuedAt?: string | null, readonly version?: string | null, readonly data?: JSONValue | null, readonly merchantReference: string, readonly customerIpAddress?: string | null, readonly issuingPrincipal?: { readonly id: string, readonly name?: string | null } | { readonly id: string, readonly email: string } | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly transaction: { readonly id: string, readonly name: string, readonly pspReference: string, readonly authorizedAmount: { readonly amount: number, readonly currency: string }, readonly chargedAmount: { readonly amount: number, readonly currency: string } }, readonly sourceObject: { readonly id: string, readonly totalPrice: { readonly gross: { readonly amount: number, readonly currency: string } } } | { readonly id: string, readonly total: { readonly gross: { readonly amount: number, readonly currency: string } } }, readonly action: { readonly amount: number, readonly currency: string, readonly actionType: TransactionFlowStrategyEnum } } | {} | null };
+
+export type TransactionRefundRequestedSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TransactionRefundRequestedSubscription = { readonly event?: { readonly issuedAt?: string | null, readonly version?: string | null, readonly issuingPrincipal?: { readonly id: string, readonly name?: string | null } | { readonly id: string, readonly email: string } | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly transaction?: { readonly id: string, readonly name: string, readonly pspReference: string, readonly chargedAmount: { readonly amount: number, readonly currency: string }, readonly refundedAmount: { readonly amount: number, readonly currency: string } } | null, readonly action: { readonly amount: number, readonly currency: string, readonly actionType: TransactionActionEnum }, readonly grantedRefund?: { readonly id: string, readonly reason?: string | null, readonly status: OrderGrantedRefundStatusEnum, readonly amount: { readonly amount: number, readonly currency: string } } | null } | {} | null };
+
 import { IntrospectionQuery } from 'graphql';
 export default {
   "__schema": {
@@ -100069,9 +100089,257 @@ export const UntypedOrderFilterShippingMethodsSubscriptionDocument = gql`
 export function useOrderFilterShippingMethodsSubscriptionSubscription<TData = OrderFilterShippingMethodsSubscriptionSubscription>(options: Omit<Urql.UseSubscriptionArgs<OrderFilterShippingMethodsSubscriptionSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<OrderFilterShippingMethodsSubscriptionSubscription, TData>) {
   return Urql.useSubscription<OrderFilterShippingMethodsSubscriptionSubscription, TData, OrderFilterShippingMethodsSubscriptionSubscriptionVariables>({ query: UntypedOrderFilterShippingMethodsSubscriptionDocument, ...options }, handler);
 };
+export const UntypedPaymentGatewayInitializeSessionDocument = gql`
+    subscription PaymentGatewayInitializeSession {
+  event {
+    ... on PaymentGatewayInitializeSession {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      sourceObject {
+        ... on Checkout {
+          id
+          totalPrice {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+        ... on Order {
+          id
+          total {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+      }
+      data
+      amount
+    }
+  }
+}
+    `;
+
+export function usePaymentGatewayInitializeSessionSubscription<TData = PaymentGatewayInitializeSessionSubscription>(options: Omit<Urql.UseSubscriptionArgs<PaymentGatewayInitializeSessionSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<PaymentGatewayInitializeSessionSubscription, TData>) {
+  return Urql.useSubscription<PaymentGatewayInitializeSessionSubscription, TData, PaymentGatewayInitializeSessionSubscriptionVariables>({ query: UntypedPaymentGatewayInitializeSessionDocument, ...options }, handler);
+};
+export const UntypedTransactionInitializeSessionDocument = gql`
+    subscription TransactionInitializeSession {
+  event {
+    ... on TransactionInitializeSession {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      transaction {
+        id
+        name
+        pspReference
+        authorizedAmount {
+          amount
+          currency
+        }
+        chargedAmount {
+          amount
+          currency
+        }
+      }
+      sourceObject {
+        ... on Checkout {
+          id
+          totalPrice {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+        ... on Order {
+          id
+          total {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+      }
+      data
+      merchantReference
+      customerIpAddress
+      action {
+        amount
+        currency
+        actionType
+      }
+      idempotencyKey
+    }
+  }
+}
+    `;
+
+export function useTransactionInitializeSessionSubscription<TData = TransactionInitializeSessionSubscription>(options: Omit<Urql.UseSubscriptionArgs<TransactionInitializeSessionSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<TransactionInitializeSessionSubscription, TData>) {
+  return Urql.useSubscription<TransactionInitializeSessionSubscription, TData, TransactionInitializeSessionSubscriptionVariables>({ query: UntypedTransactionInitializeSessionDocument, ...options }, handler);
+};
+export const UntypedTransactionProcessSessionDocument = gql`
+    subscription TransactionProcessSession {
+  event {
+    ... on TransactionProcessSession {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      transaction {
+        id
+        name
+        pspReference
+        authorizedAmount {
+          amount
+          currency
+        }
+        chargedAmount {
+          amount
+          currency
+        }
+      }
+      sourceObject {
+        ... on Checkout {
+          id
+          totalPrice {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+        ... on Order {
+          id
+          total {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+      }
+      data
+      merchantReference
+      customerIpAddress
+      action {
+        amount
+        currency
+        actionType
+      }
+    }
+  }
+}
+    `;
+
+export function useTransactionProcessSessionSubscription<TData = TransactionProcessSessionSubscription>(options: Omit<Urql.UseSubscriptionArgs<TransactionProcessSessionSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<TransactionProcessSessionSubscription, TData>) {
+  return Urql.useSubscription<TransactionProcessSessionSubscription, TData, TransactionProcessSessionSubscriptionVariables>({ query: UntypedTransactionProcessSessionDocument, ...options }, handler);
+};
+export const UntypedTransactionRefundRequestedDocument = gql`
+    subscription TransactionRefundRequested {
+  event {
+    ... on TransactionRefundRequested {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      transaction {
+        id
+        name
+        pspReference
+        chargedAmount {
+          amount
+          currency
+        }
+        refundedAmount {
+          amount
+          currency
+        }
+      }
+      action {
+        amount
+        currency
+        actionType
+      }
+      grantedRefund {
+        id
+        amount {
+          amount
+          currency
+        }
+        reason
+        status
+      }
+    }
+  }
+}
+    `;
+
+export function useTransactionRefundRequestedSubscription<TData = TransactionRefundRequestedSubscription>(options: Omit<Urql.UseSubscriptionArgs<TransactionRefundRequestedSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<TransactionRefundRequestedSubscription, TData>) {
+  return Urql.useSubscription<TransactionRefundRequestedSubscription, TData, TransactionRefundRequestedSubscriptionVariables>({ query: UntypedTransactionRefundRequestedDocument, ...options }, handler);
+};
 export const OrderCreatedWebhookPayloadFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderCreated"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<OrderCreatedWebhookPayloadFragment, unknown>;
 export const OrderFilterShippingMethodsPayloadFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderFilterShippingMethodsPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderFilterShippingMethods"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingMethods"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<OrderFilterShippingMethodsPayloadFragment, unknown>;
 export const LastOrderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"LastOrder"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"created"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"lines"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<LastOrderQuery, LastOrderQueryVariables>;
 export const ProductTimestampsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ProductTimestamps"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"product"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"created"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<ProductTimestampsQuery, ProductTimestampsQueryVariables>;
 export const OrderCreatedSubscriptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"OrderCreatedSubscription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderCreated"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<OrderCreatedSubscriptionSubscription, OrderCreatedSubscriptionSubscriptionVariables>;
 export const OrderFilterShippingMethodsSubscriptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"OrderFilterShippingMethodsSubscription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"OrderFilterShippingMethodsPayload"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderFilterShippingMethodsPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderFilterShippingMethods"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingMethods"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<OrderFilterShippingMethodsSubscriptionSubscription, OrderFilterShippingMethodsSubscriptionSubscriptionVariables>;
+export const PaymentGatewayInitializeSessionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"PaymentGatewayInitializeSession"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PaymentGatewayInitializeSession"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"issuingPrincipal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"sourceObject"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Checkout"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"totalPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Order"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"data"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}}]}}]}}]}}]} as unknown as DocumentNode<PaymentGatewayInitializeSessionSubscription, PaymentGatewayInitializeSessionSubscriptionVariables>;
+export const TransactionInitializeSessionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"TransactionInitializeSession"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionInitializeSession"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"issuingPrincipal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}},{"kind":"Field","name":{"kind":"Name","value":"authorizedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"Field","name":{"kind":"Name","value":"chargedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sourceObject"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Checkout"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"totalPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Order"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"data"}},{"kind":"Field","name":{"kind":"Name","value":"merchantReference"}},{"kind":"Field","name":{"kind":"Name","value":"customerIpAddress"}},{"kind":"Field","name":{"kind":"Name","value":"action"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"actionType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"idempotencyKey"}}]}}]}}]}}]} as unknown as DocumentNode<TransactionInitializeSessionSubscription, TransactionInitializeSessionSubscriptionVariables>;
+export const TransactionProcessSessionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"TransactionProcessSession"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionProcessSession"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"issuingPrincipal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}},{"kind":"Field","name":{"kind":"Name","value":"authorizedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"Field","name":{"kind":"Name","value":"chargedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sourceObject"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Checkout"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"totalPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Order"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"data"}},{"kind":"Field","name":{"kind":"Name","value":"merchantReference"}},{"kind":"Field","name":{"kind":"Name","value":"customerIpAddress"}},{"kind":"Field","name":{"kind":"Name","value":"action"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"actionType"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TransactionProcessSessionSubscription, TransactionProcessSessionSubscriptionVariables>;
+export const TransactionRefundRequestedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"TransactionRefundRequested"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionRefundRequested"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"issuingPrincipal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}},{"kind":"Field","name":{"kind":"Name","value":"chargedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"Field","name":{"kind":"Name","value":"refundedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"action"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"actionType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"grantedRefund"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"amount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TransactionRefundRequestedSubscription, TransactionRefundRequestedSubscriptionVariables>;
