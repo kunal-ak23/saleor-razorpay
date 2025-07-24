@@ -1,0 +1,44 @@
+subscription PaymentGatewayInitializeSession {
+  event {
+    ... on PaymentGatewayInitializeSession {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      sourceObject {
+        ... on Checkout {
+          id
+          totalPrice {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+        ... on Order {
+          id
+          total {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+      }
+      data
+      amount
+    }
+  }
+} 

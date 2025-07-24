@@ -1,0 +1,49 @@
+subscription TransactionRefundRequested {
+  event {
+    ... on TransactionRefundRequested {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      transaction {
+        id
+        name
+        pspReference
+        chargedAmount {
+          amount
+          currency
+        }
+        refundedAmount {
+          amount
+          currency
+        }
+      }
+      action {
+        amount
+        currency
+        actionType
+      }
+      grantedRefund {
+        id
+        amount {
+          amount
+          currency
+        }
+        reason
+        status
+      }
+    }
+  }
+} 

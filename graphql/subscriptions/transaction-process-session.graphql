@@ -1,0 +1,63 @@
+subscription TransactionProcessSession {
+  event {
+    ... on TransactionProcessSession {
+      issuedAt
+      version
+      issuingPrincipal {
+        ... on App {
+          id
+          name
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      recipient {
+        id
+        name
+      }
+      transaction {
+        id
+        name
+        pspReference
+        authorizedAmount {
+          amount
+          currency
+        }
+        chargedAmount {
+          amount
+          currency
+        }
+      }
+      sourceObject {
+        ... on Checkout {
+          id
+          totalPrice {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+        ... on Order {
+          id
+          total {
+            gross {
+              amount
+              currency
+            }
+          }
+        }
+      }
+      data
+      merchantReference
+      customerIpAddress
+      action {
+        amount
+        currency
+        actionType
+      }
+    }
+  }
+} 
