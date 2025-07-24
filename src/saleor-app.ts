@@ -1,6 +1,7 @@
 import { APL } from "@saleor/app-sdk/APL";
-import { SaleorApp } from "@saleor/app-sdk/saleor-app";
 import { FileAPL } from "@saleor/app-sdk/APL/file";
+import { UpstashAPL } from "@saleor/app-sdk/APL/upstash";
+import { SaleorApp } from "@saleor/app-sdk/saleor-app";
 
 /**
  * By default auth data are stored in the `.auth-data.json` (FileAPL).
@@ -12,12 +13,11 @@ import { FileAPL } from "@saleor/app-sdk/APL/file";
 export let apl: APL;
 
 switch (process.env.APL) {
-  /**
-   * Depending on env variables, chose what APL to use.
-   * To reduce the footprint, import only these needed
-   *
-   * TODO: See docs
-   */
+  case "upstash":
+    // Require `UPSTASH_URL` and `UPSTASH_TOKEN` environment variables
+    apl = new UpstashAPL();
+    break;
+
   default:
     apl = new FileAPL();
 }
