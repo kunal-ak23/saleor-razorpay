@@ -110,3 +110,14 @@ The choice of the APL is made using the `APL` environment variable. If the value
 - `upstash`: use [Upstash](https://upstash.com/) Redis as storage method. Free account required. It can be used for development and production and supports multi-tenancy. Requires `UPSTASH_URL` and `UPSTASH_TOKEN` environment variables to be set
 
 If you want to use your own database, you can implement your own APL. [Check the documentation to read more](https://docs.saleor.io/developer/extending/apps/developing-apps/app-sdk/apl).
+
+## Razorpay Integration Setup
+
+Add the following environment variables to your `.env` file:
+
+```
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+```
+
+These credentials are required for the app to communicate with Razorpay APIs.
