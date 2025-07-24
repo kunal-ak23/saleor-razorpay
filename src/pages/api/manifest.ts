@@ -24,32 +24,7 @@ export default createManifestHandler({
     const iframeBaseUrl = process.env.APP_IFRAME_BASE_URL ?? appBaseUrl;
     const apiBaseURL = process.env.APP_API_BASE_URL ?? appBaseUrl;
 
-    const extensionsForSaleor3_22: AppExtension[] = [
-        {
-          url: apiBaseURL + "/api/server-widget",
-          permissions: [],
-          mount: "PRODUCT_DETAILS_WIDGETS",
-          label: "Product Timestamps",
-          target: "WIDGET",
-          options: {
-            widgetTarget: {
-              method: "POST",
-            },
-          },
-        },
-        {
-          url: iframeBaseUrl+"/client-widget",
-          permissions: [],
-          mount: "ORDER_DETAILS_WIDGETS",
-          label: "Order widget example",
-          target: "WIDGET",
-          options: {
-            widgetTarget: {
-              method: "GET",
-            },
-          },
-        },
-      ]
+    const extensionsForSaleor3_22: AppExtension[] = []
 
     const saleorMajor = schemaVersion && schemaVersion[0];
     const saleorMinor = schemaVersion && schemaVersion[1]

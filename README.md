@@ -3,11 +3,11 @@
 </div>
 
 <div align="center">
-  <h1>Saleor App Template</h1>
+  <h1>Saleor Razorpay Payment App</h1>
 </div>
 
 <div align="center">
-  <p>Bare-bones boilerplate for writing Saleor Apps with Next.js.</p>
+  <p>A Saleor Payment App that integrates with the Razorpay payment gateway for webhook handling.</p>
 </div>
 
 <div align="center">
