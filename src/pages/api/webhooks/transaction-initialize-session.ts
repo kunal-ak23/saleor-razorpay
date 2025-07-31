@@ -1,8 +1,10 @@
 import { SaleorSyncWebhook } from "@saleor/app-sdk/handlers/next";
 import { saleorApp } from "@/saleor-app";
 import { TransactionInitializeSessionDocument, TransactionInitializeSession } from "@/generated/graphql";
-import { validateTransactionData } from "@/lib/validation/transaction";
+import { validateTransactionData, dataSchema, ResponseType } from "@/lib/validation/transaction";
 import { RazorpayService } from "@/lib/razorpay";
+import { getTransactionActions } from "@/lib/transaction-actions";
+import { v7 as uuidv7 } from "uuid";
 
 export const transactionInitializeSessionWebhook = new SaleorSyncWebhook<TransactionInitializeSession>({
   name: "Transaction Initialize Session",
@@ -13,57 +15,89 @@ export const transactionInitializeSessionWebhook = new SaleorSyncWebhook<Transac
 });
 
 export default transactionInitializeSessionWebhook.createHandler(async (req, res, ctx) => {
-  const { data, action, amount, currency = "INR", id, paymentGateway, idempotencyKey } = req.body;
+  const { payload } = ctx;
+  const { actionType, amount } = payload.action;
 
-  if (!id) {
-    return res.status(400).json({
-      errors: [{ field: "id", message: "Missing required field", code: "INVALID" }],
-      data: null,
-      transaction: null,
-      transactionEvent: null,
-    });
+  console.debug("Received webhook", { payload });
+
+  const rawEventData = payload.data;
+  const dataResult = dataSchema.safeParse(rawEventData);
+
+  if (dataResult.error) {
+    console.warn("Invalid data field received in notification", { error: dataResult.error });
+
+    const errorResponse: ResponseType = {
+      pspReference: uuidv7(),
+      result: actionType === "CHARGE" ? "CHARGE_FAILURE" : "AUTHORIZATION_FAILURE",
+      message: `Validation error: ${dataResult.error.message}`,
+      amount,
+      actions: [],
+      data: {
+        exception: true,
+      },
+    };
+
+    console.info("Returning error response to Saleor", { response: errorResponse });
+
+    return res.status(200).json(errorResponse);
   }
+
+  const data = dataResult.data;
+  console.info("Parsed data field from notification", { data });
 
   try {
     // Validate the payment gateway data if provided
     let validatedData;
-    if (data && typeof data === "object") {
+    if (payload.data && typeof payload.data === "object") {
       try {
-        validatedData = validateTransactionData(data);
+        validatedData = validateTransactionData(payload.data);
       } catch (validationError: any) {
-        return res.status(400).json({
-          errors: [{ 
-            field: "data", 
-            message: `Validation error: ${validationError.message}`, 
-            code: "INVALID" 
-          }],
-          data: null,
-          transaction: null,
-          transactionEvent: null,
-        });
+        const errorResponse: ResponseType = {
+          pspReference: uuidv7(),
+          result: actionType === "CHARGE" ? "CHARGE_FAILURE" : "AUTHORIZATION_FAILURE",
+          message: `Validation error: ${validationError.message}`,
+          amount,
+          actions: [],
+          data: {
+            exception: true,
+          },
+        };
+
+        console.info("Returning validation error response to Saleor", { response: errorResponse });
+        return res.status(200).json(errorResponse);
       }
     }
 
     // Use validated data or fallback to request body
     const orderAmount = validatedData?.amount || amount;
-    const orderCurrency = validatedData?.currency || currency;
+    const orderCurrency = validatedData?.currency || "INR";
     const customerData = validatedData?.customer;
-    const notes = validatedData?.notes || { saleor_id: id, idempotencyKey: idempotencyKey || "" };
+    const notes = validatedData?.notes || { 
+      saleor_id: payload.transaction?.id, 
+      idempotencyKey: payload.idempotencyKey || "" 
+    };
 
     if (!orderAmount) {
-      return res.status(400).json({
-        errors: [{ field: "amount", message: "Missing required amount", code: "INVALID" }],
-        data: null,
-        transaction: null,
-        transactionEvent: null,
-      });
+      const errorResponse: ResponseType = {
+        pspReference: uuidv7(),
+        result: actionType === "CHARGE" ? "CHARGE_FAILURE" : "AUTHORIZATION_FAILURE",
+        message: "Missing required amount",
+        amount,
+        actions: [],
+        data: {
+          exception: true,
+        },
+      };
+
+      console.info("Returning missing amount error response to Saleor", { response: errorResponse });
+      return res.status(200).json(errorResponse);
     }
 
     // Create Razorpay order using service
     const orderResult = await RazorpayService.createOrder({
       amount: Number(orderAmount),
       currency: orderCurrency,
-      receipt: id,
+      receipt: payload.transaction?.id || uuidv7(),
       notes,
     });
 
@@ -71,12 +105,18 @@ export default transactionInitializeSessionWebhook.createHandler(async (req, res
       throw new Error(orderResult.error);
     }
 
-    const order = orderResult.order!; // We know it's not null because we checked success
+    const order = orderResult.order!;
 
     // Determine transaction event type based on action
-    const eventType = action === "AUTHORIZATION" ? "AUTHORIZATION_REQUEST" : "CHARGE_REQUEST";
+    const eventType = actionType === "AUTHORIZATION" ? "AUTHORIZATION_REQUEST" : "CHARGE_REQUEST";
 
-    res.status(200).json({
+    const successResponse: ResponseType = {
+      pspReference: data.event.includePspReference ? order.id : undefined,
+      result: data.event.type,
+      message: "Razorpay order created successfully",
+      actions: getTransactionActions(eventType as any),
+      amount,
+      externalUrl: `https://dashboard.razorpay.com/app/orders/${order.id}`,
       data: {
         orderId: order.id,
         amount: order.amount,
@@ -85,35 +125,27 @@ export default transactionInitializeSessionWebhook.createHandler(async (req, res
         customer: customerData,
         notes,
       },
-      transaction: {
-        id: ctx.payload.transaction?.id,
-        actions: ["CHARGE", "AUTHORIZATION"],
-      },
-      transactionEvent: {
-        type: eventType,
-        pspReference: order.id,
-        message: "Razorpay order created successfully",
-        amount: { 
-          amount: Number(order.amount) / 100, 
-          currency: order.currency 
-        },
-        externalUrl: `https://dashboard.razorpay.com/app/orders/${order.id}`,
-      },
-      errors: [],
-    });
+    };
+
+    console.info("Returning success response to Saleor", { response: successResponse });
+
+    return res.status(200).json(successResponse);
   } catch (error: any) {
     console.error("Razorpay order creation error:", error);
-    res.status(500).json({
-      errors: [{ message: error.message || "Failed to create Razorpay order", code: "GRAPHQL_ERROR" }],
-      data: null,
-      transaction: null,
-      transactionEvent: {
-        type: "CHARGE_FAILURE",
-        pspReference: null,
-        message: error.message || "Failed to create Razorpay order",
-        amount: amount ? { amount, currency } : null,
-        externalUrl: null,
+
+    const errorResponse: ResponseType = {
+      pspReference: uuidv7(),
+      result: actionType === "CHARGE" ? "CHARGE_FAILURE" : "AUTHORIZATION_FAILURE",
+      message: error.message || "Failed to create Razorpay order",
+      amount,
+      actions: [],
+      data: {
+        exception: true,
       },
-    });
+    };
+
+    console.info("Returning error response to Saleor", { response: errorResponse });
+
+    return res.status(200).json(errorResponse);
   }
 }); 

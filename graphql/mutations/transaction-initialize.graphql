@@ -1,0 +1,27 @@
+mutation TransactionInitialize($checkoutId: ID!, $action: TransactionFlowStrategyEnum, $paymentGateway: PaymentGatewayToInitialize!, $amount: PositiveDecimal) {
+  transactionInitialize(
+    id: $checkoutId
+    action: $action
+    paymentGateway: $paymentGateway
+    amount: $amount
+  ) {
+    transaction {
+      id
+      actions
+      __typename
+    }
+    transactionEvent {
+      message
+      type
+      __typename
+    }
+    data
+    errors {
+      field
+      code
+      message
+      __typename
+    }
+    __typename
+  }
+} 

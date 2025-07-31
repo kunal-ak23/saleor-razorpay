@@ -1,7 +1,9 @@
 import { actions, useAppBridge } from "@saleor/app-sdk/app-bridge";
 import { Box, Button, Text } from "@saleor/macaw-ui";
+import { useState } from "react";
 
 import { OrderExample } from "../order-example";
+import { RazorpayComponent } from "../components/RazorpayComponent";
 
 /**
  * This is example of using AppBridge, when App is mounted in Dashboard
@@ -12,6 +14,7 @@ import { OrderExample } from "../order-example";
  */
 const ActionsPage = () => {
   const { appBridge, appBridgeState } = useAppBridge();
+  const [paymentStatus, setPaymentStatus] = useState<string>("");
 
   const navigateToOrders = () => {
     appBridge?.dispatch(
@@ -19,6 +22,16 @@ const ActionsPage = () => {
         to: `/orders`,
       })
     );
+  };
+
+  const handlePaymentSuccess = (result: any) => {
+    setPaymentStatus("Payment initialized successfully!");
+    console.log("Payment success:", result);
+  };
+
+  const handlePaymentError = (error: string) => {
+    setPaymentStatus(`Payment failed: ${error}`);
+    console.error("Payment error:", error);
   };
 
   return (
@@ -29,6 +42,40 @@ const ActionsPage = () => {
         </Text>
         <Text as={"p"}>Installing the app in the Dashboard gave it superpowers such as:</Text>
       </Box>
+      
+      <Box>
+        <Text as={"h2"} size={8} marginBottom={2}>
+          Razorpay Payment Gateway
+        </Text>
+        <Text color="default2">
+          💡 Test the Razorpay payment gateway integration. This component demonstrates how to integrate Razorpay payments in your frontend.
+        </Text>
+        <Box marginY={4}>
+          <RazorpayComponent 
+            checkoutId="test-checkout-123"
+            amount={1000} // 10 INR in paise
+            currency="INR"
+            customer={{
+              name: "John Doe",
+              email: "john@example.com",
+              contact: "+919999999999"
+            }}
+            onSuccess={handlePaymentSuccess}
+            onError={handlePaymentError}
+          />
+        </Box>
+        {paymentStatus && (
+          <Box 
+            backgroundColor={paymentStatus.includes("failed") ? "error1" : "success1"}
+            padding={4}
+            borderRadius={4}
+            marginTop={2}
+          >
+            <Text color="white">{paymentStatus}</Text>
+          </Box>
+        )}
+      </Box>
+      
       <Box>
         <Text as={"h2"} size={8} marginBottom={2}>
           AppBridge actions

@@ -1,45 +1,13 @@
 import React, { useState } from "react";
-import { useMutation } from "urql";
-
-const TRANSACTION_INITIALIZE_MUTATION = `
-  mutation transactionInitialize($checkoutId: ID!, $action: TransactionFlowStrategyEnum, $paymentGateway: PaymentGatewayToInitialize!, $amount: PositiveDecimal) {
-    transactionInitialize(
-      id: $checkoutId
-      action: $action
-      paymentGateway: $paymentGateway
-      amount: $amount
-    ) {
-      transaction {
-        id
-        actions
-        __typename
-      }
-      transactionEvent {
-        message
-        type
-        __typename
-      }
-      data
-      errors {
-        field
-        code
-        message
-        __typename
-      }
-      __typename
-    }
-  }
-`;
 
 export default function ExampleUsage() {
   const [checkoutId, setCheckoutId] = useState("");
   const [amount, setAmount] = useState("2.00");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [paymentData, setPaymentData] = useState<any>(null);
 
-  const [transactionInitializeResult, transactionInitialize] = useMutation(TRANSACTION_INITIALIZE_MUTATION);
-
-  const handleTransactionInitialize = async () => {
+  const handlePaymentInitialize = async () => {
     if (!checkoutId) {
       alert("Please enter a checkout ID");
       return;
@@ -47,33 +15,75 @@ export default function ExampleUsage() {
 
     setLoading(true);
     try {
-      const variables = {
-        checkoutId,
-        action: "CHARGE" as const,
-        paymentGateway: {
-          id: "razorpay.payment.gateway",
-          data: {
-            amount: parseFloat(amount),
-            currency: "INR",
-            customer: {
-              contact: "+918690149598",
-              email: "kunalsharma.ks13@gmail.com",
-              name: "Kunal Sharma"
-            },
-            notes: {
-              checkout_id: checkoutId
-            },
-            order_id: checkoutId
-          }
+      const response = await fetch("/api/complete-payment-flow", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        amount: parseFloat(amount)
-      };
+        body: JSON.stringify({
+          checkoutId,
+          amount: parseFloat(amount),
+          currency: "INR",
+          customer: {
+            contact: "+918690149598",
+            email: "kunalsharma.ks13@gmail.com",
+            name: "Kunal Sharma"
+          },
+          notes: {
+            checkout_id: checkoutId
+          }
+        }),
+      });
 
-      const result = await transactionInitialize(variables);
-      setResult(result);
+      const data = await response.json();
+      
+      if (data.success) {
+        setPaymentData(data);
+        setResult({ type: "initialize", data });
+      } else {
+        setResult({ type: "error", error: data.error });
+      }
     } catch (error) {
-      console.error("Transaction initialize error:", error);
-      setResult({ error: error instanceof Error ? error.message : "Unknown error" });
+      console.error("Payment initialize error:", error);
+      setResult({ type: "error", error: error instanceof Error ? error.message : "Unknown error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    if (!paymentData?.transactionId) {
+      alert("Please initialize payment first");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Simulate payment success with a mock payment ID
+      const mockPaymentId = "pay_" + Math.random().toString(36).substr(2, 9);
+      
+      const response = await fetch("/api/complete-payment-flow", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          checkoutId,
+          paymentId: mockPaymentId,
+          transactionId: paymentData.transactionId
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setResult({ type: "success", data });
+      } else {
+        setResult({ type: "error", error: data.error });
+      }
+    } catch (error) {
+      console.error("Payment success error:", error);
+      setResult({ type: "error", error: error instanceof Error ? error.message : "Unknown error" });
     } finally {
       setLoading(false);
     }
@@ -81,11 +91,11 @@ export default function ExampleUsage() {
 
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-      <h1>Razorpay Payment App - Example Usage</h1>
+      <h1>Razorpay Payment App - Complete Flow Example</h1>
       
       <div style={{ marginBottom: "20px" }}>
-        <h2>Transaction Initialize Example</h2>
-        <p>This example shows how to call the transactionInitialize mutation with Razorpay payment gateway data.</p>
+        <h2>Step 1: Initialize Payment</h2>
+        <p>This step creates a Razorpay order and prepares the payment flow.</p>
       </div>
 
       <div style={{ marginBottom: "20px" }}>
@@ -115,7 +125,7 @@ export default function ExampleUsage() {
       </div>
 
       <button
-        onClick={handleTransactionInitialize}
+        onClick={handlePaymentInitialize}
         disabled={loading}
         style={{
           padding: "10px 20px",
@@ -123,11 +133,34 @@ export default function ExampleUsage() {
           color: "white",
           border: "none",
           borderRadius: "4px",
-          cursor: loading ? "not-allowed" : "pointer"
+          cursor: loading ? "not-allowed" : "pointer",
+          marginRight: "10px"
         }}
       >
-        {loading ? "Processing..." : "Initialize Transaction"}
+        {loading ? "Processing..." : "Initialize Payment"}
       </button>
+
+      {paymentData && (
+        <div style={{ marginTop: "30px" }}>
+          <h2>Step 2: Simulate Payment Success</h2>
+          <p>After payment initialization, simulate a successful payment to complete the checkout automatically.</p>
+          
+          <button
+            onClick={handlePaymentSuccess}
+            disabled={loading}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#28a745",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: loading ? "not-allowed" : "pointer"
+            }}
+          >
+            {loading ? "Processing..." : "Simulate Payment Success"}
+          </button>
+        </div>
+      )}
 
       {result && (
         <div style={{ marginTop: "20px" }}>
@@ -145,36 +178,44 @@ export default function ExampleUsage() {
       )}
 
       <div style={{ marginTop: "40px" }}>
-        <h2>How it works:</h2>
+        <h2>How the Automatic Payment Flow Works:</h2>
         <ol>
-          <li>The frontend calls <code>transactionInitialize</code> mutation with Razorpay payment gateway data</li>
-          <li>The app receives the webhook at <code>/api/webhooks/transaction-initialize-session</code></li>
-          <li>The app creates a Razorpay order and returns the order details</li>
-          <li>The frontend can then use the returned data to complete the payment with Razorpay</li>
+          <li><strong>Initialize Payment:</strong> Frontend calls <code>/api/complete-payment-flow</code> with checkout data</li>
+          <li><strong>App Creates Order:</strong> App calls <code>transactionInitialize</code> mutation and creates Razorpay order</li>
+          <li><strong>Payment Success:</strong> When payment is successful, frontend calls the same endpoint with payment details</li>
+          <li><strong>Automatic Completion:</strong> App automatically calls <code>transactionProcess</code> and <code>checkoutComplete</code> mutations</li>
+          <li><strong>Order Created:</strong> Saleor creates the order and the payment flow is complete</li>
         </ol>
 
-        <h3>Expected Response Structure:</h3>
+        <h3>Benefits of This Approach:</h3>
+        <ul>
+          <li><strong>Automatic:</strong> No need for frontend to handle multiple mutations</li>
+          <li><strong>Seamless:</strong> App handles the complete payment flow internally</li>
+          <li><strong>Reliable:</strong> Reduces chances of incomplete checkouts</li>
+          <li><strong>Simple:</strong> Frontend only needs to call one endpoint</li>
+        </ul>
+
+        <h3>API Endpoint Usage:</h3>
         <pre style={{ backgroundColor: "#f5f5f5", padding: "10px", borderRadius: "4px" }}>
-{`{
-  "data": {
-    "orderId": "order_xxx",
-    "amount": 200,
-    "currency": "INR",
-    "keyId": "rzp_test_xxx",
-    "customer": { ... },
-    "notes": { ... }
-  },
-  "transaction": {
-    "id": "xxx",
-    "actions": ["CHARGE", "AUTHORIZATION"]
-  },
-  "transactionEvent": {
-    "type": "CHARGE_REQUEST",
-    "pspReference": "order_xxx",
-    "message": "Razorpay order created successfully",
-    "amount": { "amount": 2.00, "currency": "INR" },
-    "externalUrl": "https://dashboard.razorpay.com/app/orders/xxx"
+{`// Step 1: Initialize Payment
+POST /api/complete-payment-flow
+{
+  "checkoutId": "Q2hlY2tvdXQ6...",
+  "amount": 2.00,
+  "currency": "INR",
+  "customer": {
+    "name": "Kunal Sharma",
+    "email": "kunalsharma.ks13@gmail.com",
+    "contact": "+918690149598"
   }
+}
+
+// Step 2: Payment Success (called by frontend after Razorpay payment)
+POST /api/complete-payment-flow
+{
+  "checkoutId": "Q2hlY2tvdXQ6...",
+  "paymentId": "pay_xxx",
+  "transactionId": "transaction_xxx"
 }`}
         </pre>
       </div>

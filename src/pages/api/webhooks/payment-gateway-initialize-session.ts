@@ -2,36 +2,31 @@ import { SaleorSyncWebhook } from "@saleor/app-sdk/handlers/next";
 import { saleorApp } from "@/saleor-app";
 import {
   PaymentGatewayInitializeSessionDocument,
-  PaymentGatewayInitializeSession,
+  PaymentGatewayInitializeSessionEventFragment,
 } from "@/generated/graphql";
 
-export const paymentGatewayInitializeSessionWebhook = new SaleorSyncWebhook<PaymentGatewayInitializeSession>({
-  name: "Payment Gateway Initialize Session",
-  webhookPath: "api/webhooks/payment-gateway-initialize-session",
-  event: "PAYMENT_GATEWAY_INITIALIZE_SESSION",
-  apl: saleorApp.apl,
-  query: PaymentGatewayInitializeSessionDocument,
+export const paymentGatewayInitializeSessionWebhook =
+  new SaleorSyncWebhook<PaymentGatewayInitializeSessionEventFragment>({
+    name: "Payment Gateway Initialize Session",
+    webhookPath: "api/webhooks/payment-gateway-initialize-session",
+    event: "PAYMENT_GATEWAY_INITIALIZE_SESSION",
+    apl: saleorApp.apl,
+    query: PaymentGatewayInitializeSessionDocument,
+  });
+
+export default paymentGatewayInitializeSessionWebhook.createHandler((req, res, ctx) => {
+  return res.status(200).json({
+    data: {
+      ok: true,
+    },
+  });
 });
 
-export default paymentGatewayInitializeSessionWebhook.createHandler(async (req, res, ctx) => {
-  const { amount, currency = "INR" } = req.body;
-
-  res.status(200).json({
-    gatewayConfigs: [
-      {
-        id: "razorpay.payment.gateway",
-        data: {
-          keyId: process.env.RAZORPAY_KEY_ID,
-          amount: amount,
-          currency: currency,
-          name: "Razorpay",
-          description: "Pay securely with Razorpay",
-          supportedCurrencies: ["INR", "USD", "EUR", "GBP"],
-          supportedPaymentMethods: ["card", "netbanking", "wallet", "upi"],
-        },
-        errors: [],
-      },
-    ],
-    errors: [],
-  });
-}); 
+/**
+ * Disable body parser for this endpoint, so signature can be verified
+ */
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}; 
