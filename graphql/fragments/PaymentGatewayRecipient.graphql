@@ -1,0 +1,4 @@
+fragment PaymentGatewayRecipient on App {
+  id
+  name
+} 

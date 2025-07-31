@@ -2,11 +2,11 @@ import { SaleorSyncWebhook } from "@saleor/app-sdk/handlers/next";
 import { saleorApp } from "@/saleor-app";
 import {
   PaymentGatewayInitializeSessionDocument,
-  PaymentGatewayInitializeSessionEventFragment,
+  PaymentGatewayInitializeSession,
 } from "@/generated/graphql";
 
 export const paymentGatewayInitializeSessionWebhook =
-  new SaleorSyncWebhook<PaymentGatewayInitializeSessionEventFragment>({
+  new SaleorSyncWebhook<PaymentGatewayInitializeSession>({
     name: "Payment Gateway Initialize Session",
     webhookPath: "api/webhooks/payment-gateway-initialize-session",
     event: "PAYMENT_GATEWAY_INITIALIZE_SESSION",

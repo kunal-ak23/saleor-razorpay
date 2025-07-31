@@ -19,45 +19,23 @@ export const transactionChargeRequestedWebhook =
 
 export default transactionChargeRequestedWebhook.createHandler(async (req, res, ctx) => {
   const { payload } = ctx;
-  const { actionType, amount } = payload.action;
 
   console.debug("Received webhook", { payload });
 
-  const rawEventData = payload.data;
-  const dataResult = dataSchema.safeParse(rawEventData);
-
-  if (dataResult.error) {
-    console.warn("Invalid data field received in notification", { error: dataResult.error });
-
-    const errorResponse: ResponseType = {
-      pspReference: uuidv7(),
-      result: "CHARGE_FAILURE",
-      message: `Validation error: ${dataResult.error.message}`,
-      amount,
-      actions: [],
-      data: {
-        exception: true,
-      },
-    };
-
-    console.info("Returning error response to Saleor", { response: errorResponse });
-
-    return res.status(200).json(errorResponse);
-  }
-
-  const data = dataResult.data;
-  console.info("Parsed data field from notification", { data });
+  // The webhook payload contains transaction data, not a data field
+  const transaction = payload.transaction;
+  const amount = transaction?.authorizedAmount?.amount || 0;
 
   // For Razorpay, charge requests are typically handled during the payment process
   // This webhook is called when Saleor wants to charge an authorized payment
-  const { payment_id, amount: chargeAmount, currency = "INR" } = payload.data || {};
+  const payment_id = transaction?.pspReference;
 
   if (!payment_id) {
     const errorResponse: ResponseType = {
       pspReference: uuidv7(),
       result: "CHARGE_FAILURE",
       message: "Missing payment_id",
-      amount,
+      amount: 0,
       actions: [],
       data: {
         exception: true,
@@ -73,16 +51,16 @@ export default transactionChargeRequestedWebhook.createHandler(async (req, res, 
     // This is a simplified implementation - in practice, you might need to handle
     // the actual payment capture logic here
     const successResponse: ResponseType = {
-      pspReference: data.event.includePspReference ? payment_id : undefined,
-      result: data.event.type,
+      pspReference: payment_id,
+      result: "CHARGE_SUCCESS",
       message: "Payment charged successfully",
       actions: getTransactionActions("CHARGE_SUCCESS" as any),
       amount,
       externalUrl: `https://dashboard.razorpay.com/app/payments/${payment_id}`,
       data: {
         paymentId: payment_id,
-        amount: chargeAmount || amount,
-        currency,
+        amount,
+        currency: transaction?.authorizedAmount?.currency || "INR",
         status: "captured",
       },
     };
@@ -97,7 +75,7 @@ export default transactionChargeRequestedWebhook.createHandler(async (req, res, 
       pspReference: payment_id,
       result: "CHARGE_FAILURE",
       message: `Charge processing failed: ${error.message}`,
-      amount,
+      amount: 0,
       actions: getTransactionActions("CHARGE_FAILURE" as any),
       data: {
         exception: true,

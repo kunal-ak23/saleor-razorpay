@@ -8,7 +8,7 @@ import { RazorpayComponent } from "../components/RazorpayComponent";
 /**
  * This is example of using AppBridge, when App is mounted in Dashboard
  * See more about AppBridge possibilities
- * https://github.com/saleor/saleor-app-sdk/blob/main/docs/app-bridge.md
+ * https://github.com/saleor/app-sdk/blob/main/docs/app-bridge.md
  *
  * -> You can safely remove this file!
  */
@@ -66,12 +66,12 @@ const ActionsPage = () => {
         </Box>
         {paymentStatus && (
           <Box 
-            backgroundColor={paymentStatus.includes("failed") ? "error1" : "success1"}
+            backgroundColor={paymentStatus.includes("failed") ? "critical1" : "success1"}
             padding={4}
             borderRadius={4}
             marginTop={2}
           >
-            <Text color="white">{paymentStatus}</Text>
+            <Text color="default1">{paymentStatus}</Text>
           </Box>
         )}
       </Box>

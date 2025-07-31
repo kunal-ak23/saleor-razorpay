@@ -21,62 +21,40 @@ const razorpay = new Razorpay({
 
 export default transactionRefundRequestedWebhook.createHandler(async (req, res, ctx) => {
   const { payload } = ctx;
-  const { actionType, amount } = payload.action;
 
   console.debug("Received webhook", { payload });
 
-  const rawEventData = payload.data;
-  const dataResult = dataSchema.safeParse(rawEventData);
-
-  if (dataResult.error) {
-    console.warn("Invalid data field received in notification", { error: dataResult.error });
-
-    const errorResponse: ResponseType = {
-      pspReference: uuidv7(),
-      result: "REFUND_FAILURE",
-      message: `Validation error: ${dataResult.error.message}`,
-      amount,
-      actions: [],
-      data: {
-        exception: true,
-      },
-    };
-
-    console.info("Returning error response to Saleor", { response: errorResponse });
-
-    return res.status(200).json(errorResponse);
-  }
-
-  const data = dataResult.data;
-  console.info("Parsed data field from notification", { data });
+  // The webhook payload contains transaction data, not a data field
+  const transaction = payload.transaction;
+  const amount = transaction?.chargedAmount?.amount || 0;
 
   // Extract payment information from the transaction data
-  const { payment_id, amount: refundAmount, currency = "INR" } = payload.data || {};
+  const payment_id = transaction?.pspReference;
 
-  if (!payment_id || !refundAmount) {
+  if (!payment_id) {
     const errorResponse: ResponseType = {
       pspReference: uuidv7(),
       result: "REFUND_FAILURE",
-      message: "Missing payment_id or amount",
-      amount,
+      message: "Missing payment_id",
+      amount: 0,
       actions: [],
       data: {
         exception: true,
       },
     };
 
-    console.info("Returning missing payment ID or amount error response to Saleor", { response: errorResponse });
+    console.info("Returning missing payment ID error response to Saleor", { response: errorResponse });
     return res.status(200).json(errorResponse);
   }
 
   try {
     const refund = await razorpay.payments.refund(payment_id, { 
-      amount: Math.round(Number(refundAmount) * 100) 
+      amount: Math.round(Number(amount) * 100) 
     });
 
     const successResponse: ResponseType = {
-      pspReference: data.event.includePspReference ? refund.id : undefined,
-      result: data.event.type,
+      pspReference: refund.id,
+      result: "REFUND_SUCCESS",
       message: "Refund processed successfully",
       actions: getTransactionActions("REFUND_SUCCESS" as any),
       amount,
@@ -100,7 +78,7 @@ export default transactionRefundRequestedWebhook.createHandler(async (req, res, 
       pspReference: payment_id,
       result: "REFUND_FAILURE",
       message: `Refund processing failed: ${error.message}`,
-      amount,
+      amount: 0,
       actions: getTransactionActions("REFUND_FAILURE" as any),
       data: {
         exception: true,

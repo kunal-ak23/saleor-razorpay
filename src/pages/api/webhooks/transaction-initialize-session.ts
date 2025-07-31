@@ -121,9 +121,9 @@ export default transactionInitializeSessionWebhook.createHandler(async (req, res
         orderId: order.id,
         amount: order.amount,
         currency: order.currency,
-        keyId: process.env.RAZORPAY_KEY_ID,
-        customer: customerData,
-        notes,
+        keyId: process.env.RAZORPAY_KEY_ID || "",
+        customer: customerData ? JSON.stringify(customerData) : "",
+        notes: notes ? JSON.stringify(notes) : "",
       },
     };
 

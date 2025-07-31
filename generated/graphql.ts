@@ -29245,9 +29245,360 @@ export type _Service = {
   readonly sdl?: Maybe<Scalars['String']>;
 };
 
+type BasicWebhookMetadata_AccountChangeEmailRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AccountConfirmationRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AccountConfirmed_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AccountDeleteRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AccountDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AccountEmailChanged_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AccountSetPasswordRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AddressCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AddressDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AddressUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AppDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AppInstalled_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AppStatusChanged_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AppUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AttributeCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AttributeDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AttributeUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AttributeValueCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AttributeValueDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_AttributeValueUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CalculateTaxes_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CategoryCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CategoryDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CategoryUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ChannelCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ChannelDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ChannelMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ChannelStatusChanged_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ChannelUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CheckoutCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CheckoutFilterShippingMethods_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CheckoutFullyPaid_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CheckoutMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CheckoutUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CollectionCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CollectionDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CollectionMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CollectionUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CustomerCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CustomerMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_CustomerUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_DraftOrderCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_DraftOrderDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_DraftOrderUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_FulfillmentApproved_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_FulfillmentCanceled_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_FulfillmentCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_FulfillmentMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_FulfillmentTrackingNumberUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardExportCompleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardSent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardStatusChanged_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_GiftCardUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_InvoiceDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_InvoiceRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_InvoiceSent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ListStoredPaymentMethods_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_MenuCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_MenuDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_MenuItemCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_MenuItemDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_MenuItemUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_MenuUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderBulkCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderCancelled_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderConfirmed_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderExpired_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderFilterShippingMethods_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderFulfilled_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderFullyPaid_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderFullyRefunded_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderPaid_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderRefunded_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_OrderUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PageCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PageDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PageTypeCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PageTypeDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PageTypeUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PageUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentAuthorize_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentCaptureEvent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentConfirmEvent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentGatewayInitializeSession_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentGatewayInitializeTokenizationSession_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentListGateways_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentMethodInitializeTokenizationSession_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentMethodProcessTokenizationSession_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentProcessEvent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentRefundEvent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PaymentVoidEvent_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PermissionGroupCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PermissionGroupDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PermissionGroupUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductExportCompleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductMediaCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductMediaDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductMediaUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantBackInStock_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantOutOfStock_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantStockUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ProductVariantUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionEnded_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionRuleCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionRuleDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionRuleUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionStarted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_PromotionUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_SaleCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_SaleDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_SaleToggle_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_SaleUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingListMethodsForCheckout_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingPriceCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingPriceDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingPriceUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingZoneCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingZoneDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingZoneMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShippingZoneUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ShopMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_StaffCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_StaffDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_StaffSetPasswordRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_StaffUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_StoredPaymentMethodDeleteRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_ThumbnailCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TransactionCancelationRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TransactionChargeRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TransactionInitializeSession_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TransactionItemMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TransactionProcessSession_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TransactionRefundRequested_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TranslationCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_TranslationUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherCodeExportCompleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherCodesCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherCodesDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_VoucherUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_WarehouseCreated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_WarehouseDeleted_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_WarehouseMetadataUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+type BasicWebhookMetadata_WarehouseUpdated_Fragment = { readonly issuedAt?: string | null, readonly version?: string | null };
+
+export type BasicWebhookMetadataFragment = BasicWebhookMetadata_AccountChangeEmailRequested_Fragment | BasicWebhookMetadata_AccountConfirmationRequested_Fragment | BasicWebhookMetadata_AccountConfirmed_Fragment | BasicWebhookMetadata_AccountDeleteRequested_Fragment | BasicWebhookMetadata_AccountDeleted_Fragment | BasicWebhookMetadata_AccountEmailChanged_Fragment | BasicWebhookMetadata_AccountSetPasswordRequested_Fragment | BasicWebhookMetadata_AddressCreated_Fragment | BasicWebhookMetadata_AddressDeleted_Fragment | BasicWebhookMetadata_AddressUpdated_Fragment | BasicWebhookMetadata_AppDeleted_Fragment | BasicWebhookMetadata_AppInstalled_Fragment | BasicWebhookMetadata_AppStatusChanged_Fragment | BasicWebhookMetadata_AppUpdated_Fragment | BasicWebhookMetadata_AttributeCreated_Fragment | BasicWebhookMetadata_AttributeDeleted_Fragment | BasicWebhookMetadata_AttributeUpdated_Fragment | BasicWebhookMetadata_AttributeValueCreated_Fragment | BasicWebhookMetadata_AttributeValueDeleted_Fragment | BasicWebhookMetadata_AttributeValueUpdated_Fragment | BasicWebhookMetadata_CalculateTaxes_Fragment | BasicWebhookMetadata_CategoryCreated_Fragment | BasicWebhookMetadata_CategoryDeleted_Fragment | BasicWebhookMetadata_CategoryUpdated_Fragment | BasicWebhookMetadata_ChannelCreated_Fragment | BasicWebhookMetadata_ChannelDeleted_Fragment | BasicWebhookMetadata_ChannelMetadataUpdated_Fragment | BasicWebhookMetadata_ChannelStatusChanged_Fragment | BasicWebhookMetadata_ChannelUpdated_Fragment | BasicWebhookMetadata_CheckoutCreated_Fragment | BasicWebhookMetadata_CheckoutFilterShippingMethods_Fragment | BasicWebhookMetadata_CheckoutFullyPaid_Fragment | BasicWebhookMetadata_CheckoutMetadataUpdated_Fragment | BasicWebhookMetadata_CheckoutUpdated_Fragment | BasicWebhookMetadata_CollectionCreated_Fragment | BasicWebhookMetadata_CollectionDeleted_Fragment | BasicWebhookMetadata_CollectionMetadataUpdated_Fragment | BasicWebhookMetadata_CollectionUpdated_Fragment | BasicWebhookMetadata_CustomerCreated_Fragment | BasicWebhookMetadata_CustomerMetadataUpdated_Fragment | BasicWebhookMetadata_CustomerUpdated_Fragment | BasicWebhookMetadata_DraftOrderCreated_Fragment | BasicWebhookMetadata_DraftOrderDeleted_Fragment | BasicWebhookMetadata_DraftOrderUpdated_Fragment | BasicWebhookMetadata_FulfillmentApproved_Fragment | BasicWebhookMetadata_FulfillmentCanceled_Fragment | BasicWebhookMetadata_FulfillmentCreated_Fragment | BasicWebhookMetadata_FulfillmentMetadataUpdated_Fragment | BasicWebhookMetadata_FulfillmentTrackingNumberUpdated_Fragment | BasicWebhookMetadata_GiftCardCreated_Fragment | BasicWebhookMetadata_GiftCardDeleted_Fragment | BasicWebhookMetadata_GiftCardExportCompleted_Fragment | BasicWebhookMetadata_GiftCardMetadataUpdated_Fragment | BasicWebhookMetadata_GiftCardSent_Fragment | BasicWebhookMetadata_GiftCardStatusChanged_Fragment | BasicWebhookMetadata_GiftCardUpdated_Fragment | BasicWebhookMetadata_InvoiceDeleted_Fragment | BasicWebhookMetadata_InvoiceRequested_Fragment | BasicWebhookMetadata_InvoiceSent_Fragment | BasicWebhookMetadata_ListStoredPaymentMethods_Fragment | BasicWebhookMetadata_MenuCreated_Fragment | BasicWebhookMetadata_MenuDeleted_Fragment | BasicWebhookMetadata_MenuItemCreated_Fragment | BasicWebhookMetadata_MenuItemDeleted_Fragment | BasicWebhookMetadata_MenuItemUpdated_Fragment | BasicWebhookMetadata_MenuUpdated_Fragment | BasicWebhookMetadata_OrderBulkCreated_Fragment | BasicWebhookMetadata_OrderCancelled_Fragment | BasicWebhookMetadata_OrderConfirmed_Fragment | BasicWebhookMetadata_OrderCreated_Fragment | BasicWebhookMetadata_OrderExpired_Fragment | BasicWebhookMetadata_OrderFilterShippingMethods_Fragment | BasicWebhookMetadata_OrderFulfilled_Fragment | BasicWebhookMetadata_OrderFullyPaid_Fragment | BasicWebhookMetadata_OrderFullyRefunded_Fragment | BasicWebhookMetadata_OrderMetadataUpdated_Fragment | BasicWebhookMetadata_OrderPaid_Fragment | BasicWebhookMetadata_OrderRefunded_Fragment | BasicWebhookMetadata_OrderUpdated_Fragment | BasicWebhookMetadata_PageCreated_Fragment | BasicWebhookMetadata_PageDeleted_Fragment | BasicWebhookMetadata_PageTypeCreated_Fragment | BasicWebhookMetadata_PageTypeDeleted_Fragment | BasicWebhookMetadata_PageTypeUpdated_Fragment | BasicWebhookMetadata_PageUpdated_Fragment | BasicWebhookMetadata_PaymentAuthorize_Fragment | BasicWebhookMetadata_PaymentCaptureEvent_Fragment | BasicWebhookMetadata_PaymentConfirmEvent_Fragment | BasicWebhookMetadata_PaymentGatewayInitializeSession_Fragment | BasicWebhookMetadata_PaymentGatewayInitializeTokenizationSession_Fragment | BasicWebhookMetadata_PaymentListGateways_Fragment | BasicWebhookMetadata_PaymentMethodInitializeTokenizationSession_Fragment | BasicWebhookMetadata_PaymentMethodProcessTokenizationSession_Fragment | BasicWebhookMetadata_PaymentProcessEvent_Fragment | BasicWebhookMetadata_PaymentRefundEvent_Fragment | BasicWebhookMetadata_PaymentVoidEvent_Fragment | BasicWebhookMetadata_PermissionGroupCreated_Fragment | BasicWebhookMetadata_PermissionGroupDeleted_Fragment | BasicWebhookMetadata_PermissionGroupUpdated_Fragment | BasicWebhookMetadata_ProductCreated_Fragment | BasicWebhookMetadata_ProductDeleted_Fragment | BasicWebhookMetadata_ProductExportCompleted_Fragment | BasicWebhookMetadata_ProductMediaCreated_Fragment | BasicWebhookMetadata_ProductMediaDeleted_Fragment | BasicWebhookMetadata_ProductMediaUpdated_Fragment | BasicWebhookMetadata_ProductMetadataUpdated_Fragment | BasicWebhookMetadata_ProductUpdated_Fragment | BasicWebhookMetadata_ProductVariantBackInStock_Fragment | BasicWebhookMetadata_ProductVariantCreated_Fragment | BasicWebhookMetadata_ProductVariantDeleted_Fragment | BasicWebhookMetadata_ProductVariantMetadataUpdated_Fragment | BasicWebhookMetadata_ProductVariantOutOfStock_Fragment | BasicWebhookMetadata_ProductVariantStockUpdated_Fragment | BasicWebhookMetadata_ProductVariantUpdated_Fragment | BasicWebhookMetadata_PromotionCreated_Fragment | BasicWebhookMetadata_PromotionDeleted_Fragment | BasicWebhookMetadata_PromotionEnded_Fragment | BasicWebhookMetadata_PromotionRuleCreated_Fragment | BasicWebhookMetadata_PromotionRuleDeleted_Fragment | BasicWebhookMetadata_PromotionRuleUpdated_Fragment | BasicWebhookMetadata_PromotionStarted_Fragment | BasicWebhookMetadata_PromotionUpdated_Fragment | BasicWebhookMetadata_SaleCreated_Fragment | BasicWebhookMetadata_SaleDeleted_Fragment | BasicWebhookMetadata_SaleToggle_Fragment | BasicWebhookMetadata_SaleUpdated_Fragment | BasicWebhookMetadata_ShippingListMethodsForCheckout_Fragment | BasicWebhookMetadata_ShippingPriceCreated_Fragment | BasicWebhookMetadata_ShippingPriceDeleted_Fragment | BasicWebhookMetadata_ShippingPriceUpdated_Fragment | BasicWebhookMetadata_ShippingZoneCreated_Fragment | BasicWebhookMetadata_ShippingZoneDeleted_Fragment | BasicWebhookMetadata_ShippingZoneMetadataUpdated_Fragment | BasicWebhookMetadata_ShippingZoneUpdated_Fragment | BasicWebhookMetadata_ShopMetadataUpdated_Fragment | BasicWebhookMetadata_StaffCreated_Fragment | BasicWebhookMetadata_StaffDeleted_Fragment | BasicWebhookMetadata_StaffSetPasswordRequested_Fragment | BasicWebhookMetadata_StaffUpdated_Fragment | BasicWebhookMetadata_StoredPaymentMethodDeleteRequested_Fragment | BasicWebhookMetadata_ThumbnailCreated_Fragment | BasicWebhookMetadata_TransactionCancelationRequested_Fragment | BasicWebhookMetadata_TransactionChargeRequested_Fragment | BasicWebhookMetadata_TransactionInitializeSession_Fragment | BasicWebhookMetadata_TransactionItemMetadataUpdated_Fragment | BasicWebhookMetadata_TransactionProcessSession_Fragment | BasicWebhookMetadata_TransactionRefundRequested_Fragment | BasicWebhookMetadata_TranslationCreated_Fragment | BasicWebhookMetadata_TranslationUpdated_Fragment | BasicWebhookMetadata_VoucherCodeExportCompleted_Fragment | BasicWebhookMetadata_VoucherCodesCreated_Fragment | BasicWebhookMetadata_VoucherCodesDeleted_Fragment | BasicWebhookMetadata_VoucherCreated_Fragment | BasicWebhookMetadata_VoucherDeleted_Fragment | BasicWebhookMetadata_VoucherMetadataUpdated_Fragment | BasicWebhookMetadata_VoucherUpdated_Fragment | BasicWebhookMetadata_WarehouseCreated_Fragment | BasicWebhookMetadata_WarehouseDeleted_Fragment | BasicWebhookMetadata_WarehouseMetadataUpdated_Fragment | BasicWebhookMetadata_WarehouseUpdated_Fragment;
+
+export type MoneyFragment = { readonly amount: number, readonly currency: string };
+
+export type PaymentGatewayRecipientFragment = { readonly id: string, readonly name?: string | null };
+
+export type SyncWebhookTransactionFragment = { readonly id: string, readonly name: string, readonly pspReference: string };
+
+export type TransactionCancelRequestedEventFragment = { readonly __typename: 'TransactionCancelationRequested', readonly issuedAt?: string | null, readonly version?: string | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly transaction?: { readonly id: string, readonly name: string, readonly pspReference: string, readonly authorizedAmount: { readonly amount: number, readonly currency: string } } | null };
+
+export type TransactionChargeRequestedEventFragment = { readonly __typename: 'TransactionChargeRequested', readonly issuedAt?: string | null, readonly version?: string | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly action: { readonly amount: number, readonly actionType: TransactionActionEnum }, readonly transaction?: { readonly id: string, readonly name: string, readonly pspReference: string, readonly authorizedAmount: { readonly amount: number, readonly currency: string } } | null };
+
 export type OrderCreatedWebhookPayloadFragment = { readonly order?: { readonly userEmail?: string | null, readonly id: string, readonly number: string, readonly user?: { readonly email: string, readonly firstName: string, readonly lastName: string } | null } | null };
 
 export type OrderFilterShippingMethodsPayloadFragment = { readonly order?: { readonly id: string } | null, readonly shippingMethods?: ReadonlyArray<{ readonly id: string, readonly name: string }> | null };
+
+export type CheckoutCompleteMutationVariables = Exact<{
+  checkoutId: Scalars['ID'];
+}>;
+
+
+export type CheckoutCompleteMutation = { readonly checkoutComplete?: { readonly __typename: 'CheckoutComplete', readonly errors: ReadonlyArray<{ readonly __typename: 'CheckoutError', readonly message?: string | null, readonly field?: string | null, readonly code: CheckoutErrorCode }>, readonly order?: { readonly __typename: 'Order', readonly id: string } | null } | null };
+
+export type CheckoutErrorFragmentFragment = { readonly __typename: 'CheckoutError', readonly message?: string | null, readonly field?: string | null, readonly code: CheckoutErrorCode };
+
+export type TransactionInitializeMutationVariables = Exact<{
+  checkoutId: Scalars['ID'];
+  action?: InputMaybe<TransactionFlowStrategyEnum>;
+  paymentGateway: PaymentGatewayToInitialize;
+  amount?: InputMaybe<Scalars['PositiveDecimal']>;
+}>;
+
+
+export type TransactionInitializeMutation = { readonly transactionInitialize?: { readonly __typename: 'TransactionInitialize', readonly data?: JSONValue | null, readonly transaction?: { readonly __typename: 'TransactionItem', readonly id: string, readonly actions: ReadonlyArray<TransactionActionEnum> } | null, readonly transactionEvent?: { readonly __typename: 'TransactionEvent', readonly message: string, readonly type?: TransactionEventTypeEnum | null } | null, readonly errors: ReadonlyArray<{ readonly __typename: 'TransactionInitializeError', readonly field?: string | null, readonly code: TransactionInitializeErrorCode, readonly message?: string | null }> } | null };
 
 export type LastOrderQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29260,6 +29611,16 @@ export type ProductTimestampsQueryVariables = Exact<{
 
 
 export type ProductTimestampsQuery = { readonly product?: { readonly created: string, readonly updatedAt: string } | null };
+
+export type TransactionCancelRequestedSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TransactionCancelRequestedSubscription = { readonly event?: { readonly __typename: 'TransactionCancelationRequested', readonly issuedAt?: string | null, readonly version?: string | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly transaction?: { readonly id: string, readonly name: string, readonly pspReference: string, readonly authorizedAmount: { readonly amount: number, readonly currency: string } } | null } | {} | null };
+
+export type TransactionChargeRequestedSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TransactionChargeRequestedSubscription = { readonly event?: { readonly __typename: 'TransactionChargeRequested', readonly issuedAt?: string | null, readonly version?: string | null, readonly recipient?: { readonly id: string, readonly name?: string | null } | null, readonly action: { readonly amount: number, readonly actionType: TransactionActionEnum }, readonly transaction?: { readonly id: string, readonly name: string, readonly pspReference: string, readonly authorizedAmount: { readonly amount: number, readonly currency: string } } | null } | {} | null };
 
 export type OrderCreatedSubscriptionSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
@@ -99995,6 +100356,65 @@ export default {
     "directives": []
   }
 } as unknown as IntrospectionQuery;
+export const UntypedBasicWebhookMetadataFragmentDoc = gql`
+    fragment BasicWebhookMetadata on Event {
+  issuedAt
+  version
+}
+    `;
+export const UntypedPaymentGatewayRecipientFragmentDoc = gql`
+    fragment PaymentGatewayRecipient on App {
+  id
+  name
+}
+    `;
+export const UntypedSyncWebhookTransactionFragmentDoc = gql`
+    fragment SyncWebhookTransaction on TransactionItem {
+  id
+  name
+  pspReference
+}
+    `;
+export const UntypedMoneyFragmentDoc = gql`
+    fragment Money on Money {
+  amount
+  currency
+}
+    `;
+export const UntypedTransactionCancelRequestedEventFragmentDoc = gql`
+    fragment TransactionCancelRequestedEvent on TransactionCancelationRequested {
+  ...BasicWebhookMetadata
+  __typename
+  recipient {
+    ...PaymentGatewayRecipient
+  }
+  transaction {
+    ...SyncWebhookTransaction
+    authorizedAmount {
+      ...Money
+    }
+  }
+}
+    `;
+export const UntypedTransactionChargeRequestedEventFragmentDoc = gql`
+    fragment TransactionChargeRequestedEvent on TransactionChargeRequested {
+  ...BasicWebhookMetadata
+  __typename
+  recipient {
+    ...PaymentGatewayRecipient
+  }
+  action {
+    amount
+    actionType
+  }
+  transaction {
+    ...SyncWebhookTransaction
+    authorizedAmount {
+      ...Money
+    }
+  }
+}
+    `;
 export const UntypedOrderCreatedWebhookPayloadFragmentDoc = gql`
     fragment OrderCreatedWebhookPayload on OrderCreated {
   order {
@@ -100020,6 +100440,66 @@ export const UntypedOrderFilterShippingMethodsPayloadFragmentDoc = gql`
   }
 }
     `;
+export const UntypedCheckoutErrorFragmentFragmentDoc = gql`
+    fragment CheckoutErrorFragment on CheckoutError {
+  message
+  field
+  code
+  __typename
+}
+    `;
+export const UntypedCheckoutCompleteDocument = gql`
+    mutation CheckoutComplete($checkoutId: ID!) {
+  checkoutComplete(id: $checkoutId) {
+    errors {
+      ...CheckoutErrorFragment
+      __typename
+    }
+    order {
+      id
+      __typename
+    }
+    __typename
+  }
+}
+    ${UntypedCheckoutErrorFragmentFragmentDoc}`;
+
+export function useCheckoutCompleteMutation() {
+  return Urql.useMutation<CheckoutCompleteMutation, CheckoutCompleteMutationVariables>(UntypedCheckoutCompleteDocument);
+};
+export const UntypedTransactionInitializeDocument = gql`
+    mutation TransactionInitialize($checkoutId: ID!, $action: TransactionFlowStrategyEnum, $paymentGateway: PaymentGatewayToInitialize!, $amount: PositiveDecimal) {
+  transactionInitialize(
+    id: $checkoutId
+    action: $action
+    paymentGateway: $paymentGateway
+    amount: $amount
+  ) {
+    transaction {
+      id
+      actions
+      __typename
+    }
+    transactionEvent {
+      message
+      type
+      __typename
+    }
+    data
+    errors {
+      field
+      code
+      message
+      __typename
+    }
+    __typename
+  }
+}
+    `;
+
+export function useTransactionInitializeMutation() {
+  return Urql.useMutation<TransactionInitializeMutation, TransactionInitializeMutationVariables>(UntypedTransactionInitializeDocument);
+};
 export const UntypedLastOrderDocument = gql`
     query LastOrder {
   orders(first: 1) {
@@ -100066,6 +100546,36 @@ export const UntypedProductTimestampsDocument = gql`
 
 export function useProductTimestampsQuery(options?: Omit<Urql.UseQueryArgs<ProductTimestampsQueryVariables>, 'query'>) {
   return Urql.useQuery<ProductTimestampsQuery, ProductTimestampsQueryVariables>({ query: UntypedProductTimestampsDocument, ...options });
+};
+export const UntypedTransactionCancelRequestedDocument = gql`
+    subscription TransactionCancelRequested {
+  event {
+    ...TransactionCancelRequestedEvent
+  }
+}
+    ${UntypedTransactionCancelRequestedEventFragmentDoc}
+${UntypedBasicWebhookMetadataFragmentDoc}
+${UntypedPaymentGatewayRecipientFragmentDoc}
+${UntypedSyncWebhookTransactionFragmentDoc}
+${UntypedMoneyFragmentDoc}`;
+
+export function useTransactionCancelRequestedSubscription<TData = TransactionCancelRequestedSubscription>(options: Omit<Urql.UseSubscriptionArgs<TransactionCancelRequestedSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<TransactionCancelRequestedSubscription, TData>) {
+  return Urql.useSubscription<TransactionCancelRequestedSubscription, TData, TransactionCancelRequestedSubscriptionVariables>({ query: UntypedTransactionCancelRequestedDocument, ...options }, handler);
+};
+export const UntypedTransactionChargeRequestedDocument = gql`
+    subscription TransactionChargeRequested {
+  event {
+    ...TransactionChargeRequestedEvent
+  }
+}
+    ${UntypedTransactionChargeRequestedEventFragmentDoc}
+${UntypedBasicWebhookMetadataFragmentDoc}
+${UntypedPaymentGatewayRecipientFragmentDoc}
+${UntypedSyncWebhookTransactionFragmentDoc}
+${UntypedMoneyFragmentDoc}`;
+
+export function useTransactionChargeRequestedSubscription<TData = TransactionChargeRequestedSubscription>(options: Omit<Urql.UseSubscriptionArgs<TransactionChargeRequestedSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<TransactionChargeRequestedSubscription, TData>) {
+  return Urql.useSubscription<TransactionChargeRequestedSubscription, TData, TransactionChargeRequestedSubscriptionVariables>({ query: UntypedTransactionChargeRequestedDocument, ...options }, handler);
 };
 export const UntypedOrderCreatedSubscriptionDocument = gql`
     subscription OrderCreatedSubscription {
@@ -100333,10 +100843,21 @@ export const UntypedTransactionRefundRequestedDocument = gql`
 export function useTransactionRefundRequestedSubscription<TData = TransactionRefundRequestedSubscription>(options: Omit<Urql.UseSubscriptionArgs<TransactionRefundRequestedSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<TransactionRefundRequestedSubscription, TData>) {
   return Urql.useSubscription<TransactionRefundRequestedSubscription, TData, TransactionRefundRequestedSubscriptionVariables>({ query: UntypedTransactionRefundRequestedDocument, ...options }, handler);
 };
+export const BasicWebhookMetadataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasicWebhookMetadata"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Event"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]} as unknown as DocumentNode<BasicWebhookMetadataFragment, unknown>;
+export const PaymentGatewayRecipientFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PaymentGatewayRecipient"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]} as unknown as DocumentNode<PaymentGatewayRecipientFragment, unknown>;
+export const SyncWebhookTransactionFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SyncWebhookTransaction"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}}]}}]} as unknown as DocumentNode<SyncWebhookTransactionFragment, unknown>;
+export const MoneyFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Money"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Money"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]} as unknown as DocumentNode<MoneyFragment, unknown>;
+export const TransactionCancelRequestedEventFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TransactionCancelRequestedEvent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionCancelationRequested"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasicWebhookMetadata"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PaymentGatewayRecipient"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SyncWebhookTransaction"}},{"kind":"Field","name":{"kind":"Name","value":"authorizedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Money"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasicWebhookMetadata"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Event"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PaymentGatewayRecipient"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SyncWebhookTransaction"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Money"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Money"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]} as unknown as DocumentNode<TransactionCancelRequestedEventFragment, unknown>;
+export const TransactionChargeRequestedEventFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TransactionChargeRequestedEvent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionChargeRequested"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasicWebhookMetadata"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PaymentGatewayRecipient"}}]}},{"kind":"Field","name":{"kind":"Name","value":"action"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"actionType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SyncWebhookTransaction"}},{"kind":"Field","name":{"kind":"Name","value":"authorizedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Money"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasicWebhookMetadata"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Event"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PaymentGatewayRecipient"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SyncWebhookTransaction"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Money"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Money"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]} as unknown as DocumentNode<TransactionChargeRequestedEventFragment, unknown>;
 export const OrderCreatedWebhookPayloadFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderCreated"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<OrderCreatedWebhookPayloadFragment, unknown>;
 export const OrderFilterShippingMethodsPayloadFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderFilterShippingMethodsPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderFilterShippingMethods"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingMethods"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<OrderFilterShippingMethodsPayloadFragment, unknown>;
+export const CheckoutErrorFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CheckoutErrorFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CheckoutError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"field"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]} as unknown as DocumentNode<CheckoutErrorFragmentFragment, unknown>;
+export const CheckoutCompleteDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CheckoutComplete"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"checkoutId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"checkoutComplete"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"checkoutId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CheckoutErrorFragment"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CheckoutErrorFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CheckoutError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"field"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]} as unknown as DocumentNode<CheckoutCompleteMutation, CheckoutCompleteMutationVariables>;
+export const TransactionInitializeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"TransactionInitialize"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"checkoutId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"action"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionFlowStrategyEnum"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paymentGateway"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaymentGatewayToInitialize"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"amount"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PositiveDecimal"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transactionInitialize"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"checkoutId"}}},{"kind":"Argument","name":{"kind":"Name","value":"action"},"value":{"kind":"Variable","name":{"kind":"Name","value":"action"}}},{"kind":"Argument","name":{"kind":"Name","value":"paymentGateway"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paymentGateway"}}},{"kind":"Argument","name":{"kind":"Name","value":"amount"},"value":{"kind":"Variable","name":{"kind":"Name","value":"amount"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"actions"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transactionEvent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"data"}},{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"field"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]}}]} as unknown as DocumentNode<TransactionInitializeMutation, TransactionInitializeMutationVariables>;
 export const LastOrderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"LastOrder"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"created"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"lines"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<LastOrderQuery, LastOrderQueryVariables>;
 export const ProductTimestampsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ProductTimestamps"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"product"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"created"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<ProductTimestampsQuery, ProductTimestampsQueryVariables>;
+export const TransactionCancelRequestedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"TransactionCancelRequested"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TransactionCancelRequestedEvent"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasicWebhookMetadata"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Event"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PaymentGatewayRecipient"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SyncWebhookTransaction"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Money"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Money"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TransactionCancelRequestedEvent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionCancelationRequested"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasicWebhookMetadata"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PaymentGatewayRecipient"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SyncWebhookTransaction"}},{"kind":"Field","name":{"kind":"Name","value":"authorizedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Money"}}]}}]}}]}}]} as unknown as DocumentNode<TransactionCancelRequestedSubscription, TransactionCancelRequestedSubscriptionVariables>;
+export const TransactionChargeRequestedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"TransactionChargeRequested"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TransactionChargeRequestedEvent"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasicWebhookMetadata"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Event"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PaymentGatewayRecipient"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SyncWebhookTransaction"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"pspReference"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Money"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Money"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TransactionChargeRequestedEvent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TransactionChargeRequested"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasicWebhookMetadata"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PaymentGatewayRecipient"}}]}},{"kind":"Field","name":{"kind":"Name","value":"action"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"actionType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SyncWebhookTransaction"}},{"kind":"Field","name":{"kind":"Name","value":"authorizedAmount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Money"}}]}}]}}]}}]} as unknown as DocumentNode<TransactionChargeRequestedSubscription, TransactionChargeRequestedSubscriptionVariables>;
 export const OrderCreatedSubscriptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"OrderCreatedSubscription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderCreated"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<OrderCreatedSubscriptionSubscription, OrderCreatedSubscriptionSubscriptionVariables>;
 export const OrderFilterShippingMethodsSubscriptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"OrderFilterShippingMethodsSubscription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"OrderFilterShippingMethodsPayload"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderFilterShippingMethodsPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderFilterShippingMethods"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingMethods"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<OrderFilterShippingMethodsSubscriptionSubscription, OrderFilterShippingMethodsSubscriptionSubscriptionVariables>;
 export const PaymentGatewayInitializeSessionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"PaymentGatewayInitializeSession"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PaymentGatewayInitializeSession"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"issuedAt"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"issuingPrincipal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"App"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"recipient"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"sourceObject"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Checkout"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"totalPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Order"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"data"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}}]}}]}}]}}]} as unknown as DocumentNode<PaymentGatewayInitializeSessionSubscription, PaymentGatewayInitializeSessionSubscriptionVariables>;

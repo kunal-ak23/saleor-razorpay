@@ -46,7 +46,8 @@ export default transactionProcessSessionWebhook.createHandler(async (req, res, c
   console.info("Parsed data field from notification", { data });
 
   // Extract payment information from the transaction data
-  const { payment_id, razorpay_payment_id, amount: paymentAmount, currency = "INR" } = payload.data || {};
+  const payloadData = payload.data as any;
+  const { payment_id, razorpay_payment_id, amount: paymentAmount, currency = "INR" } = payloadData || {};
 
   if (!razorpay_payment_id && !payment_id) {
     const errorResponse: ResponseType = {

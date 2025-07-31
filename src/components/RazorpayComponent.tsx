@@ -59,12 +59,14 @@ export const RazorpayComponent = ({
       
       console.log("Payment initialized successfully", result);
       
-      if (result.data?.transactionInitialize?.errors?.length > 0) {
-        const error = result.data.transactionInitialize.errors[0];
+      const transactionData = result.data?.transactionInitialize;
+      const errors = transactionData?.errors;
+      
+      if (errors && errors.length > 0) {
+        const error = errors[0];
         console.error("Transaction initialization error:", error);
-        onError?.(error.message);
+        onError?.(error.message || "Unknown error");
       } else {
-        const transactionData = result.data?.transactionInitialize;
         console.log("Transaction data:", transactionData);
         onSuccess?.(transactionData);
         

@@ -1,4 +1,4 @@
-import { createGraphQLClient } from "./create-graphq-client";
+import { createClient } from "./create-graphq-client";
 
 export interface PaymentFlowData {
   checkoutId: string;
@@ -22,7 +22,10 @@ export interface PaymentFlowResult {
 }
 
 export class PaymentFlowService {
-  private static client = createGraphQLClient();
+  private static client = createClient(
+    process.env.SALEOR_API_URL || "http://localhost:8000/graphql/",
+    async () => ({ token: process.env.SALEOR_APP_TOKEN || "" })
+  );
 
   static async initializePayment(data: PaymentFlowData): Promise<PaymentFlowResult> {
     try {

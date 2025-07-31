@@ -1,4 +1,4 @@
-import { TransactionEventTypeEnum } from "../generated/graphql";
+import { TransactionEventTypeEnum } from "../../generated/graphql";
 
 export type TransactionEventType = `${TransactionEventTypeEnum}`;
 

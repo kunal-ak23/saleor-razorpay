@@ -12,51 +12,31 @@ export const transactionCancelRequestedWebhook =
   new SaleorSyncWebhook<TransactionCancelRequestedEventFragment>({
     name: "Transaction Cancel Requested",
     webhookPath: "api/webhooks/transaction-cancel-requested",
-    event: "TRANSACTION_CANCEL_REQUESTED",
+    event: "TRANSACTION_CANCELATION_REQUESTED",
     apl: saleorApp.apl,
     query: TransactionCancelRequestedDocument,
   });
 
 export default transactionCancelRequestedWebhook.createHandler(async (req, res, ctx) => {
   const { payload } = ctx;
-  const { actionType, amount } = payload.action;
 
   console.debug("Received webhook", { payload });
 
-  const rawEventData = payload.data;
-  const dataResult = dataSchema.safeParse(rawEventData);
-
-  if (dataResult.error) {
-    console.warn("Invalid data field received in notification", { error: dataResult.error });
-
-    const errorResponse: ResponseType = {
-      pspReference: uuidv7(),
-      result: "CANCEL_FAILURE",
-      message: `Validation error: ${dataResult.error.message}`,
-      amount,
-      actions: [],
-      data: {
-        exception: true,
-      },
-    };
-
-    console.info("Returning error response to Saleor", { response: errorResponse });
-
-    return res.status(200).json(errorResponse);
-  }
-
-  const data = dataResult.data;
-  console.info("Parsed data field from notification", { data });
+  // The webhook payload contains transaction data, not a data field
+  const transaction = payload.transaction;
+  const amount = transaction?.authorizedAmount?.amount || 0;
 
   // For Razorpay, cancel requests are typically handled for pending payments
-  const { payment_id, amount: cancelAmount, currency = "INR" } = payload.data || {};
+  // This is a simplified implementation - in practice, you might need to handle
+  // the actual payment cancellation logic here
+  const payment_id = transaction?.pspReference;
 
   if (!payment_id) {
     const errorResponse: ResponseType = {
       pspReference: uuidv7(),
       result: "CANCEL_FAILURE",
       message: "Missing payment_id",
-      amount,
+      amount: 0,
       actions: [],
       data: {
         exception: true,
@@ -72,16 +52,16 @@ export default transactionCancelRequestedWebhook.createHandler(async (req, res, 
     // This is a simplified implementation - in practice, you might need to handle
     // the actual payment cancellation logic here
     const successResponse: ResponseType = {
-      pspReference: data.event.includePspReference ? payment_id : undefined,
-      result: data.event.type,
+      pspReference: payment_id,
+      result: "CANCEL_SUCCESS",
       message: "Payment cancelled successfully",
       actions: getTransactionActions("CANCEL_SUCCESS" as any),
       amount,
       externalUrl: `https://dashboard.razorpay.com/app/payments/${payment_id}`,
       data: {
         paymentId: payment_id,
-        amount: cancelAmount || amount,
-        currency,
+        amount,
+        currency: transaction?.authorizedAmount?.currency || "INR",
         status: "cancelled",
       },
     };
@@ -96,7 +76,7 @@ export default transactionCancelRequestedWebhook.createHandler(async (req, res, 
       pspReference: payment_id,
       result: "CANCEL_FAILURE",
       message: `Cancel processing failed: ${error.message}`,
-      amount,
+      amount: 0,
       actions: getTransactionActions("CANCEL_FAILURE" as any),
       data: {
         exception: true,

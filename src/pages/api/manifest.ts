@@ -9,10 +9,12 @@ import { paymentGatewayInitializeSessionWebhook } from "./webhooks/payment-gatew
 import { transactionInitializeSessionWebhook } from "./webhooks/transaction-initialize-session";
 import { transactionProcessSessionWebhook } from "./webhooks/transaction-process-session";
 import { transactionRefundRequestedWebhook } from "./webhooks/transaction-refund-session";
+import { transactionChargeRequestedWebhook } from "./webhooks/transaction-charge-requested";
+import { transactionCancelRequestedWebhook } from "./webhooks/transaction-cancel-requested";
 
 /**
  * App SDK helps with the valid Saleor App Manifest creation. Read more:
- * https://github.com/saleor/saleor-app-sdk/blob/main/docs/api-handlers.md#manifest-handler-factory
+ * https://github.com/saleor/app-sdk/blob/main/docs/api-handlers.md#manifest-handler-factory
  */
 export default createManifestHandler({
   async manifestFactory({ appBaseUrl, request, schemaVersion }) {
@@ -43,11 +45,11 @@ export default createManifestHandler({
        */
       permissions: [
         /**
-         * Add permission to allow "ORDER_CREATED" / "ORDER_FILTER_SHIPPING_METHODS" webhooks registration.
-         *
-         * This can be removed
+         * Add permission to allow payment gateway webhooks registration.
          */
         "HANDLE_PAYMENTS",
+        "MANAGE_ORDERS",
+        "MANAGE_CHECKOUTS",
       ],
       id: "razorpay.payment.gateway",
       version: packageJson.version,
@@ -66,6 +68,8 @@ export default createManifestHandler({
         transactionInitializeSessionWebhook.getWebhookManifest(apiBaseURL),
         transactionProcessSessionWebhook.getWebhookManifest(apiBaseURL),
         transactionRefundRequestedWebhook.getWebhookManifest(apiBaseURL),
+        transactionChargeRequestedWebhook.getWebhookManifest(apiBaseURL),
+        transactionCancelRequestedWebhook.getWebhookManifest(apiBaseURL),
       ],
       /**
        * Optionally, extend Dashboard with custom UIs
