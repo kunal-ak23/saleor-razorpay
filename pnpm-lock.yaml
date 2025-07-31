@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@saleor/app-sdk':
         specifier: 1.1.1
-        version: 1.1.1(graphql@16.8.1)(next@15.1.7(@babel/core@7.23.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.1.1(graphql@16.8.1)(next@15.1.7(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@saleor/macaw-ui':
         specifier: 1.1.10
         version: 1.1.10(@types/react-dom@18.2.10)(@types/react@18.2.25)(@vanilla-extract/css@1.14.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -19,7 +19,7 @@ importers:
         version: 1.0.0(graphql@16.8.1)
       next:
         specifier: 15.1.7
-        version: 15.1.7(@babel/core@7.23.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 15.1.7(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       razorpay:
         specifier: ^2.9.6
         version: 2.9.6
@@ -32,13 +32,16 @@ importers:
       urql:
         specifier: ^4.0.2
         version: 4.0.5(graphql@16.8.1)(react@18.3.1)
+      zod:
+        specifier: ^3.22.4
+        version: 3.25.76
     devDependencies:
       '@graphql-codegen/add':
         specifier: 3.2.0
         version: 3.2.0(graphql@16.8.1)
       '@graphql-codegen/cli':
         specifier: 3.3.1
-        version: 3.3.1(@babel/core@7.23.0)(@types/node@18.18.3)(enquirer@2.4.1)(graphql@16.8.1)
+        version: 3.3.1(@babel/core@7.24.0)(@types/node@18.18.3)(enquirer@2.4.1)(graphql@16.8.1)
       '@graphql-codegen/introspection':
         specifier: 3.0.1
         version: 3.0.1(graphql@16.8.1)
@@ -4736,6 +4739,9 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
 
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
 snapshots:
 
   '@0no-co/graphql.web@1.0.4(graphql@16.8.1)':
@@ -5019,9 +5025,9 @@ snapshots:
       '@babel/core': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
 
-  '@babel/plugin-syntax-import-assertions@7.22.5(@babel/core@7.23.0)':
+  '@babel/plugin-syntax-import-assertions@7.22.5(@babel/core@7.24.0)':
     dependencies:
-      '@babel/core': 7.23.0
+      '@babel/core': 7.24.0
       '@babel/helper-plugin-utils': 7.22.5
 
   '@babel/plugin-syntax-jsx@7.22.5(@babel/core@7.23.0)':
@@ -5574,7 +5580,7 @@ snapshots:
       graphql: 16.8.1
       tslib: 2.4.1
 
-  '@graphql-codegen/cli@3.3.1(@babel/core@7.23.0)(@types/node@18.18.3)(enquirer@2.4.1)(graphql@16.8.1)':
+  '@graphql-codegen/cli@3.3.1(@babel/core@7.24.0)(@types/node@18.18.3)(enquirer@2.4.1)(graphql@16.8.1)':
     dependencies:
       '@babel/generator': 7.23.0
       '@babel/template': 7.22.15
@@ -5582,9 +5588,9 @@ snapshots:
       '@graphql-codegen/core': 3.1.0(graphql@16.8.1)
       '@graphql-codegen/plugin-helpers': 4.2.0(graphql@16.8.1)
       '@graphql-tools/apollo-engine-loader': 7.3.26(graphql@16.8.1)
-      '@graphql-tools/code-file-loader': 7.3.23(@babel/core@7.23.0)(graphql@16.8.1)
-      '@graphql-tools/git-loader': 7.3.0(@babel/core@7.23.0)(graphql@16.8.1)
-      '@graphql-tools/github-loader': 7.3.28(@babel/core@7.23.0)(@types/node@18.18.3)(graphql@16.8.1)
+      '@graphql-tools/code-file-loader': 7.3.23(@babel/core@7.24.0)(graphql@16.8.1)
+      '@graphql-tools/git-loader': 7.3.0(@babel/core@7.24.0)(graphql@16.8.1)
+      '@graphql-tools/github-loader': 7.3.28(@babel/core@7.24.0)(@types/node@18.18.3)(graphql@16.8.1)
       '@graphql-tools/graphql-file-loader': 7.5.17(graphql@16.8.1)
       '@graphql-tools/json-file-loader': 7.4.18(graphql@16.8.1)
       '@graphql-tools/load': 7.8.14(graphql@16.8.1)
@@ -5774,9 +5780,9 @@ snapshots:
       tslib: 2.6.2
       value-or-promise: 1.0.12
 
-  '@graphql-tools/code-file-loader@7.3.23(@babel/core@7.23.0)(graphql@16.8.1)':
+  '@graphql-tools/code-file-loader@7.3.23(@babel/core@7.24.0)(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/graphql-tag-pluck': 7.5.2(@babel/core@7.23.0)(graphql@16.8.1)
+      '@graphql-tools/graphql-tag-pluck': 7.5.2(@babel/core@7.24.0)(graphql@16.8.1)
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       globby: 11.1.0
       graphql: 16.8.1
@@ -5846,9 +5852,9 @@ snapshots:
       tslib: 2.6.2
       value-or-promise: 1.0.12
 
-  '@graphql-tools/git-loader@7.3.0(@babel/core@7.23.0)(graphql@16.8.1)':
+  '@graphql-tools/git-loader@7.3.0(@babel/core@7.24.0)(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/graphql-tag-pluck': 7.5.2(@babel/core@7.23.0)(graphql@16.8.1)
+      '@graphql-tools/graphql-tag-pluck': 7.5.2(@babel/core@7.24.0)(graphql@16.8.1)
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       graphql: 16.8.1
       is-glob: 4.0.3
@@ -5859,11 +5865,11 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@graphql-tools/github-loader@7.3.28(@babel/core@7.23.0)(@types/node@18.18.3)(graphql@16.8.1)':
+  '@graphql-tools/github-loader@7.3.28(@babel/core@7.24.0)(@types/node@18.18.3)(graphql@16.8.1)':
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
       '@graphql-tools/executor-http': 0.1.10(@types/node@18.18.3)(graphql@16.8.1)
-      '@graphql-tools/graphql-tag-pluck': 7.5.2(@babel/core@7.23.0)(graphql@16.8.1)
+      '@graphql-tools/graphql-tag-pluck': 7.5.2(@babel/core@7.24.0)(graphql@16.8.1)
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       '@whatwg-node/fetch': 0.8.8
       graphql: 16.8.1
@@ -5884,10 +5890,10 @@ snapshots:
       tslib: 2.6.2
       unixify: 1.0.0
 
-  '@graphql-tools/graphql-tag-pluck@7.5.2(@babel/core@7.23.0)(graphql@16.8.1)':
+  '@graphql-tools/graphql-tag-pluck@7.5.2(@babel/core@7.24.0)(graphql@16.8.1)':
     dependencies:
       '@babel/parser': 7.23.0
-      '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.23.0)
+      '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.24.0)
       '@babel/traverse': 7.23.0
       '@babel/types': 7.23.0
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
@@ -6747,14 +6753,14 @@ snapshots:
 
   '@rushstack/eslint-patch@1.5.1': {}
 
-  '@saleor/app-sdk@1.1.1(graphql@16.8.1)(next@15.1.7(@babel/core@7.23.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@saleor/app-sdk@1.1.1(graphql@16.8.1)(next@15.1.7(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/semantic-conventions': 1.30.0
       debug: 4.4.0
       graphql: 16.8.1
       jose: 5.10.0
-      next: 15.1.7(@babel/core@7.23.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 15.1.7(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       raw-body: 3.0.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -7808,7 +7814,7 @@ snapshots:
       eslint: 8.31.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-typescript@3.6.1)(eslint@8.31.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0))(eslint@8.31.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.31.0)
       eslint-plugin-react: 7.33.2(eslint@8.31.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.31.0)
@@ -7835,8 +7841,8 @@ snapshots:
       debug: 4.4.0
       enhanced-resolve: 5.15.0
       eslint: 8.31.0
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.31.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-typescript@3.6.1)(eslint@8.31.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0))(eslint@8.31.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0))(eslint@8.31.0)
       fast-glob: 3.3.1
       get-tsconfig: 4.7.2
       is-core-module: 2.13.0
@@ -7847,7 +7853,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.8.0(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.31.0):
+  eslint-module-utils@2.8.0(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0))(eslint@8.31.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -7858,7 +7864,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.28.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-typescript@3.6.1)(eslint@8.31.0):
+  eslint-plugin-import@2.28.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0))(eslint@8.31.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.3
@@ -7868,7 +7874,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.31.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.31.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.31.0)(typescript@5.0.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.31.0))(eslint@8.31.0))(eslint@8.31.0)
       has: 1.0.4
       is-core-module: 2.13.0
       is-glob: 4.0.3
@@ -8871,7 +8877,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@15.1.7(@babel/core@7.23.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@15.1.7(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 15.1.7
       '@swc/counter': 0.1.3
@@ -8881,7 +8887,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.6(@babel/core@7.23.0)(react@18.3.1)
+      styled-jsx: 5.1.6(@babel/core@7.24.0)(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.1.7
       '@next/swc-darwin-x64': 15.1.7
@@ -9559,12 +9565,12 @@ snapshots:
     dependencies:
       js-tokens: 9.0.0
 
-  styled-jsx@5.1.6(@babel/core@7.23.0)(react@18.3.1):
+  styled-jsx@5.1.6(@babel/core@7.24.0)(react@18.3.1):
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
     optionalDependencies:
-      '@babel/core': 7.23.0
+      '@babel/core': 7.24.0
 
   supports-color@5.5.0:
     dependencies:
@@ -10026,3 +10032,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.0.0: {}
+
+  zod@3.25.76: {}

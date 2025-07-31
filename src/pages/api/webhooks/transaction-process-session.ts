@@ -1,7 +1,7 @@
 import { SaleorSyncWebhook } from "@saleor/app-sdk/handlers/next";
 import { saleorApp } from "@/saleor-app";
-import Razorpay from "razorpay";
 import { TransactionProcessSessionDocument, TransactionProcessSession } from "@/generated/graphql";
+import { RazorpayService } from "@/lib/razorpay";
 
 export const transactionProcessSessionWebhook = new SaleorSyncWebhook<TransactionProcessSession>({
   name: "Transaction Process Session",
@@ -11,53 +11,102 @@ export const transactionProcessSessionWebhook = new SaleorSyncWebhook<Transactio
   query: TransactionProcessSessionDocument,
 });
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
-
 export default transactionProcessSessionWebhook.createHandler(async (req, res, ctx) => {
-  const { payment_id, amount, currency = "INR" } = req.body;
+  const { payment_id, razorpay_payment_id, amount, currency = "INR", data } = req.body;
 
-  if (!payment_id) {
+  if (!razorpay_payment_id && !payment_id) {
     return res.status(400).json({
-      errors: [{ field: "payment_id", message: "Missing payment_id", code: "INVALID" }],
+      errors: [{ field: "payment_id", message: "Missing payment_id or razorpay_payment_id", code: "INVALID" }],
       data: null,
       transaction: null,
       transactionEvent: null,
     });
   }
 
+  const paymentId = razorpay_payment_id || payment_id;
+
   try {
-    const payment = await razorpay.payments.fetch(payment_id);
-    let capturedPayment = payment;
-    if (payment.status !== "captured") {
-      capturedPayment = await razorpay.payments.capture(payment_id, payment.amount, currency);
+    // Process payment using service
+    const paymentResult = await RazorpayService.processPayment({
+      paymentId,
+      amount,
+      currency,
+    });
+
+    if (!paymentResult.success) {
+      return res.status(200).json({
+        data: {},
+        transaction: {
+          id: ctx.payload.transaction?.id,
+          actions: ["REFUND", "CANCEL"],
+        },
+        transactionEvent: {
+          type: "CHARGE_FAILURE",
+          pspReference: paymentId,
+          message: `Payment processing failed: ${paymentResult.error}`,
+          amount: amount ? { amount, currency } : null,
+          externalUrl: `https://dashboard.razorpay.com/app/payments/${paymentId}`,
+        },
+        errors: [{ message: paymentResult.error, code: "PAYMENT_PROCESSING_FAILED" }],
+      });
     }
+
+    const capturedPayment = paymentResult.payment!; // We know it's not null because we checked success
+
+    // Determine transaction event type based on payment status
+    let eventType = "CHARGE_SUCCESS";
+    let message = "Payment processed successfully";
+    
+    if (capturedPayment.status === "authorized") {
+      eventType = "AUTHORIZATION_SUCCESS";
+      message = "Payment authorized successfully";
+    } else if (capturedPayment.status === "captured") {
+      eventType = "CHARGE_SUCCESS";
+      message = "Payment captured successfully";
+    }
+
     res.status(200).json({
-      data: {},
-      transaction: null,
+      data: {
+        paymentId: capturedPayment.id,
+        orderId: capturedPayment.order_id,
+        status: capturedPayment.status,
+        method: capturedPayment.method,
+        amount: Number(capturedPayment.amount) / 100,
+        currency: capturedPayment.currency,
+      },
+      transaction: {
+        id: ctx.payload.transaction?.id,
+        actions: ["REFUND", "CANCEL"],
+      },
       transactionEvent: {
-        type: "CHARGE_SUCCESS",
+        type: eventType,
         pspReference: capturedPayment.id,
-        message: "Payment captured successfully",
-        amount: { amount: Number(capturedPayment.amount) / 100, currency: capturedPayment.currency },
-        externalUrl: capturedPayment.invoice_id ? `https://dashboard.razorpay.com/app/invoices/${capturedPayment.invoice_id}` : null,
+        message,
+        amount: { 
+          amount: Number(capturedPayment.amount) / 100, 
+          currency: capturedPayment.currency 
+        },
+        externalUrl: `https://dashboard.razorpay.com/app/payments/${capturedPayment.id}`,
       },
       errors: [],
     });
   } catch (error: any) {
+    console.error("Razorpay payment processing error:", error);
+    
     res.status(200).json({
       data: {},
-      transaction: null,
+      transaction: {
+        id: ctx.payload.transaction?.id,
+        actions: ["REFUND", "CANCEL"],
+      },
       transactionEvent: {
         type: "CHARGE_FAILURE",
-        pspReference: payment_id,
-        message: error.message,
+        pspReference: paymentId,
+        message: `Payment processing failed: ${error.message}`,
         amount: amount ? { amount, currency } : null,
-        externalUrl: null,
+        externalUrl: `https://dashboard.razorpay.com/app/payments/${paymentId}`,
       },
-      errors: [{ message: error.message, code: "GRAPHQL_ERROR" }],
+      errors: [{ message: error.message, code: "PAYMENT_PROCESSING_FAILED" }],
     });
   }
 }); 

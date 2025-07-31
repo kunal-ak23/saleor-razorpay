@@ -14,12 +14,20 @@ export const paymentGatewayInitializeSessionWebhook = new SaleorSyncWebhook<Paym
 });
 
 export default paymentGatewayInitializeSessionWebhook.createHandler(async (req, res, ctx) => {
+  const { amount, currency = "INR" } = req.body;
+
   res.status(200).json({
     gatewayConfigs: [
       {
         id: "razorpay.payment.gateway",
         data: {
           keyId: process.env.RAZORPAY_KEY_ID,
+          amount: amount,
+          currency: currency,
+          name: "Razorpay",
+          description: "Pay securely with Razorpay",
+          supportedCurrencies: ["INR", "USD", "EUR", "GBP"],
+          supportedPaymentMethods: ["card", "netbanking", "wallet", "upi"],
         },
         errors: [],
       },
